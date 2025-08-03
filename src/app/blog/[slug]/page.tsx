@@ -61,7 +61,8 @@ export default async function BlogPostPage({ params }: Props) {
   const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodeURIComponent(shareUrl)}`;
 
   return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div className="min-h-screen bg-white">
+      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white text-gray-800">
       <div className="mb-8">
         <Link 
           href="/blog" 
@@ -106,17 +107,17 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 leading-tight">
           {post.title}
         </h1>
 
         {post.excerpt && (
-          <p className="text-xl text-gray-600 mb-6 leading-relaxed">
+          <p className="text-xl text-gray-700 mb-6 leading-relaxed">
             {post.excerpt}
           </p>
         )}
 
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-500 mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-600 mb-8">
           <div className="flex items-center space-x-4 mb-4 sm:mb-0">
             <span>
               公開日: {new Date(post.publishedAt).toLocaleDateString('ja-JP')}
@@ -176,15 +177,15 @@ export default async function BlogPostPage({ params }: Props) {
       </header>
 
       {post.body && (
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg max-w-none prose-gray bg-white text-gray-800">
           <PortableText value={post.body} />
         </div>
       )}
 
-      <footer className="mt-12 pt-8 border-t border-gray-200">
+      <footer className="mt-12 pt-8 border-t border-gray-200 bg-white">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div className="mb-4 sm:mb-0">
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">この記事をシェア</h3>
+            <h3 className="text-lg font-semibold text-gray-800 mb-2">この記事をシェア</h3>
             <div className="flex space-x-4">
               <a
                 href={twitterShareUrl}
@@ -219,6 +220,7 @@ export default async function BlogPostPage({ params }: Props) {
           </Link>
         </div>
       </footer>
-    </article>
+      </article>
+    </div>
   );
 }

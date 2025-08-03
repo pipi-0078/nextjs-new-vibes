@@ -9,7 +9,7 @@ const components: Partial<PortableTextReactComponents> = {
         return null
       }
       return (
-        <div className="my-8">
+        <div className="my-8 bg-white">
           <Image
             src={urlFor(value).width(800).height(600).url()}
             alt={value.alt || ''}
@@ -18,7 +18,7 @@ const components: Partial<PortableTextReactComponents> = {
             className="rounded-lg shadow-lg"
           />
           {value.alt && (
-            <p className="text-center text-sm text-gray-500 mt-2">
+            <p className="text-center text-sm text-gray-600 mt-2 bg-white">
               {value.alt}
             </p>
           )}
@@ -42,54 +42,54 @@ const components: Partial<PortableTextReactComponents> = {
   },
   block: {
     h1: ({ children }) => (
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mt-8 mb-4">
+      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-8 mb-4 bg-white">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mt-8 mb-4">
+      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mt-6 mb-3">
+      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mt-6 mb-3 bg-white">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-lg md:text-xl font-semibold text-gray-900 mt-6 mb-3">
+      <h4 className="text-lg md:text-xl font-semibold text-gray-800 mt-6 mb-3 bg-white">
         {children}
       </h4>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-primary-200 pl-6 py-2 my-6 text-gray-700 italic bg-gray-50 rounded-r-lg">
+      <blockquote className="border-l-4 border-primary-200 pl-6 py-2 my-6 text-gray-700 italic bg-white rounded-r-lg border border-gray-200">
         {children}
       </blockquote>
     ),
     normal: ({ children }) => (
-      <p className="text-gray-700 leading-relaxed mb-4">
+      <p className="text-gray-800 leading-relaxed mb-4 bg-white">
         {children}
       </p>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside space-y-2 mb-4 text-gray-700">
+      <ul className="list-disc list-inside space-y-2 mb-4 text-gray-800 bg-white">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside space-y-2 mb-4 text-gray-700">
+      <ol className="list-decimal list-inside space-y-2 mb-4 text-gray-800 bg-white">
         {children}
       </ol>
     ),
   },
   listItem: {
     bullet: ({ children }) => (
-      <li className="ml-4">{children}</li>
+      <li className="ml-4 text-gray-800 bg-white">{children}</li>
     ),
     number: ({ children }) => (
-      <li className="ml-4">{children}</li>
+      <li className="ml-4 text-gray-800 bg-white">{children}</li>
     ),
   },
 }

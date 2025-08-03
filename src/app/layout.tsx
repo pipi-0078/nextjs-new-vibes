@@ -41,10 +41,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white text-gray-800`}
+        style={{ backgroundColor: '#ffffff', color: '#1f2937' }}
       >
         <Header />
-        <main className="flex-grow">
+        <main className="flex-grow bg-white">
           {children}
         </main>
         <Footer />
