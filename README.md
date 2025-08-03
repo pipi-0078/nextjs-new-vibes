@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# New Vibes - Sanity連携ブログサイト
 
-## Getting Started
+Next.js + Sanity CMSで構築された、モダンなブログサイトです。
 
-First, run the development server:
+## 特徴
+
+- **Next.js 15** - 最新のReactフレームワーク
+- **Sanity CMS** - ヘッドレスCMS
+- **Tailwind CSS** - ユーティリティファーストCSS
+- **TypeScript** - 型安全性
+- **レスポンシブデザイン** - モバイルファースト
+- **SEO最適化** - メタタグ、サイトマップ、OGP対応
+- **Google Analytics** - アクセス解析
+
+## 主要機能
+
+### ブログ機能
+- 記事一覧表示
+- 個別記事ページ
+- カテゴリー別記事表示
+- タグ別記事表示
+- 記事検索（準備中）
+
+### コンテンツ管理
+- Sanity Studioでの記事作成・編集
+- 画像アップロード
+- カテゴリー・タグ管理
+- プロフィール情報管理
+
+### SEO・パフォーマンス
+- 静的サイト生成（SSG）
+- 画像最適化
+- サイトマップ自動生成
+- メタタグ自動生成
+- OGP対応
+
+## セットアップ
+
+### 1. 依存関係のインストール
+
+```bash
+npm install
+```
+
+### 2. 環境変数の設定
+
+`.env.local.example`を`.env.local`にコピーして、必要な値を設定してください。
+
+```bash
+cp .env.local.example .env.local
+```
+
+```env
+# Sanity Configuration
+NEXT_PUBLIC_SANITY_PROJECT_ID=your-project-id
+NEXT_PUBLIC_SANITY_DATASET=production
+
+# Site Configuration
+NEXT_PUBLIC_SITE_URL=https://your-domain.com
+
+# Google Analytics (optional)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+```
+
+### 3. Sanity Studioの起動
+
+別のターミナルでSanity Studioを起動してください：
+
+```bash
+cd ../studio-new-vibes
+npm run dev
+```
+
+### 4. 開発サーバーの起動
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 でサイトを確認できます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ディレクトリ構成
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
+src/
+├── app/                 # Next.js App Router
+│   ├── blog/           # ブログ関連ページ
+│   ├── profile/        # プロフィールページ
+│   ├── contact/        # お問い合わせページ
+│   └── ...
+├── components/         # 再利用可能なコンポーネント
+├── lib/               # ユーティリティ関数
+├── sanity/            # Sanityクライアント設定
+└── types/             # TypeScript型定義
+```
 
-## Learn More
+## コンテンツ管理
 
-To learn more about Next.js, take a look at the following resources:
+### Sanity Studio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. http://localhost:3333 でSanity Studioにアクセス
+2. 以下のコンテンツタイプを管理できます：
+   - **Post** - ブログ記事
+   - **Category** - カテゴリー
+   - **Tag** - タグ
+   - **Profile** - プロフィール情報
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 記事の作成
 
-## Deploy on Vercel
+1. Sanity Studioで「Post」を選択
+2. 必要な情報を入力：
+   - タイトル
+   - スラッグ（URL用）
+   - 抜粋
+   - 本文
+   - カテゴリー・タグ
+   - アイキャッチ画像
+3. 「Publish」で公開
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## デプロイ
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Vercel（推奨）
+
+1. Vercelアカウントを作成
+2. GitHubリポジトリと連携
+3. 環境変数を設定
+4. デプロイ
+
+### その他のプラットフォーム
+
+```bash
+npm run build
+npm start
+```
+
+## カスタマイズ
+
+### デザインの変更
+
+- `tailwind.config.ts` - Tailwind CSS設定
+- `src/app/globals.css` - グローバルスタイル
+- `src/components/` - コンポーネントスタイル
+
+### 機能の追加
+
+- `src/lib/sanity.ts` - Sanityクエリ
+- `studio-new-vibes/schemaTypes/` - Sanityスキーマ
+
+## 技術スタック
+
+- **フロントエンド**: Next.js 15, React 19, TypeScript
+- **スタイリング**: Tailwind CSS
+- **CMS**: Sanity
+- **デプロイ**: Vercel（推奨）
+- **分析**: Google Analytics
+
+## ライセンス
+
+MIT License
+
+## サポート
+
+ご質問やバグ報告は、GitHubのIssuesでお願いします。
