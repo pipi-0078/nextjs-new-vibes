@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next'
 import { getPosts, getCategories, getTags } from '@/lib/sanity'
+import type { Post, Category, Tag } from '@/types/blog'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'
@@ -10,21 +11,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     getTags()
   ])
 
-  const postUrls = posts.map((post: any) => ({
+  const postUrls = posts.map((post: Post) => ({
     url: `${baseUrl}/blog/${post.slug.current}`,
     lastModified: new Date(post.updatedAt || post.publishedAt),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
 
-  const categoryUrls = categories.map((category: any) => ({
+  const categoryUrls = categories.map((category: Category) => ({
     url: `${baseUrl}/blog/category/${category.slug.current}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }))
 
-  const tagUrls = tags.map((tag: any) => ({
+  const tagUrls = tags.map((tag: Tag) => ({
     url: `${baseUrl}/blog/tag/${tag.slug.current}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,

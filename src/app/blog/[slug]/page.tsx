@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import PortableText from "@/components/PortableText";
+import type { Category, Tag } from "@/types/blog";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -89,7 +90,7 @@ export default async function BlogPostPage({ params }: Props) {
       <header className="mb-8">
         {post.categories && post.categories.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-4">
-            {post.categories.map((category: any) => (
+            {post.categories.map((category: Category) => (
               <Link
                 key={category.slug.current}
                 href={`/blog/category/${category.slug.current}`}
@@ -161,7 +162,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mb-8">
-            {post.tags.map((tag: any) => (
+            {post.tags.map((tag: Tag) => (
               <Link
                 key={tag.slug.current}
                 href={`/blog/tag/${tag.slug.current}`}

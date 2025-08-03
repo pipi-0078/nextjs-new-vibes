@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getPosts, getCategories, getTags, urlFor } from "@/lib/sanity";
 import type { Metadata } from "next";
+import type { Post, Category, Tag } from "@/types/blog";
 
 export const metadata: Metadata = {
   title: "ブログ - New Vibes",
@@ -32,7 +33,7 @@ export default async function BlogPage() {
         <div className="lg:col-span-3">
           {posts && posts.length > 0 ? (
             <div className="space-y-8">
-              {posts.map((post: any) => (
+              {posts.map((post: Post) => (
                 <article key={post._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   <div className="md:flex">
                     {post.image && (
@@ -50,7 +51,7 @@ export default async function BlogPage() {
                     <div className={`p-6 ${post.image ? 'md:w-2/3' : 'w-full'}`}>
                       {post.categories && post.categories.length > 0 && (
                         <div className="flex flex-wrap gap-2 mb-3">
-                          {post.categories.map((category: any) => (
+                          {post.categories.map((category: Category) => (
                             <Link
                               key={category.slug.current}
                               href={`/blog/category/${category.slug.current}`}
@@ -92,7 +93,7 @@ export default async function BlogPage() {
                         
                         {post.tags && post.tags.length > 0 && (
                           <div className="flex flex-wrap gap-1">
-                            {post.tags.slice(0, 3).map((tag: any) => (
+                            {post.tags.slice(0, 3).map((tag: Tag) => (
                               <Link
                                 key={tag.slug.current}
                                 href={`/blog/tag/${tag.slug.current}`}
@@ -125,7 +126,7 @@ export default async function BlogPage() {
                   カテゴリー
                 </h3>
                 <div className="space-y-2">
-                  {categories.map((category: any) => (
+                  {categories.map((category: Category) => (
                     <Link
                       key={category._id}
                       href={`/blog/category/${category.slug.current}`}
@@ -151,7 +152,7 @@ export default async function BlogPage() {
                   タグ
                 </h3>
                 <div className="flex flex-wrap gap-2">
-                  {tags.map((tag: any) => (
+                  {tags.map((tag: Tag) => (
                     <Link
                       key={tag._id}
                       href={`/blog/tag/${tag.slug.current}`}

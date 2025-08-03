@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedPosts, getProfile, urlFor } from "@/lib/sanity";
+import type { Post, Category, Experience } from "@/types/blog";
 
 export const revalidate = 3600;
 
@@ -68,7 +69,7 @@ export default async function HomePage() {
 
           {featuredPosts && featuredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredPosts.map((post: any) => (
+              {featuredPosts.map((post: Post) => (
                 <article key={post._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   {post.image && (
                     <div className="h-48 relative">
@@ -83,7 +84,7 @@ export default async function HomePage() {
                   <div className="p-6">
                     {post.categories && post.categories.length > 0 && (
                       <div className="flex flex-wrap gap-2 mb-3">
-                        {post.categories.map((category: any) => (
+                        {post.categories.map((category: Category) => (
                           <span
                             key={category.slug.current}
                             className="px-3 py-1 text-xs font-medium rounded-full"
@@ -146,7 +147,7 @@ export default async function HomePage() {
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {profile.experience.map((exp: any, index: number) => (
+              {profile.experience.map((exp: Experience, index: number) => (
                 <div key={index} className="bg-white p-6 rounded-lg shadow-md">
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">
                     {exp.position}

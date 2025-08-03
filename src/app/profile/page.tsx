@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { getProfile, urlFor } from "@/lib/sanity";
 import type { Metadata } from "next";
+import type { Experience } from "@/types/blog";
 
 export const metadata: Metadata = {
   title: "プロフィール - New Vibes",
@@ -97,7 +98,7 @@ export default async function ProfilePage() {
             <div className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">経歴・実績</h2>
               <div className="space-y-6">
-                {profile.experience.map((exp: any, index: number) => (
+                {profile.experience.map((exp: Experience, index: number) => (
                   <div key={index} className="border-l-4 border-primary-200 pl-6 pb-6">
                     <h3 className="text-xl font-semibold text-gray-900 mb-2">
                       {exp.position}

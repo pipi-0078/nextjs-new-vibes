@@ -13,7 +13,7 @@ export interface Post {
       _ref: string
     }
   }
-  body?: any[]
+  body?: Array<Record<string, unknown>>
   categories?: Category[]
   tags?: Tag[]
   featured?: boolean

@@ -3,6 +3,7 @@ import Image from "next/image";
 import { getPostsByCategory, getCategories, urlFor } from "@/lib/sanity";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import type { Post, Category, Tag } from "@/types/blog";
 
 interface Props {
   params: Promise<{ category: string }>;
@@ -10,12 +11,12 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category } = await params;
-  const [posts, categories] = await Promise.all([
+  const [, categories] = await Promise.all([
     getPostsByCategory(category, 0, 1),
     getCategories()
   ]);
   
-  const categoryData = categories.find((cat: any) => cat.slug.current === category);
+  const categoryData = categories.find((cat: Category) => cat.slug.current === category);
   
   if (!categoryData) {
     return {
@@ -36,7 +37,7 @@ export default async function CategoryPage({ params }: Props) {
     getCategories()
   ]);
   
-  const categoryData = categories.find((cat: any) => cat.slug.current === category);
+  const categoryData = categories.find((cat: Category) => cat.slug.current === category);
   
   if (!categoryData) {
     notFound();
@@ -75,7 +76,7 @@ export default async function CategoryPage({ params }: Props) {
 
       {posts && posts.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {posts.map((post: any) => (
+          {posts.map((post: Post) => (
             <article key={post._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               {post.image && (
                 <div className="h-48 relative">
@@ -90,7 +91,7 @@ export default async function CategoryPage({ params }: Props) {
               <div className="p-6">
                 {post.categories && post.categories.length > 0 && (
                   <div className="flex flex-wrap gap-2 mb-3">
-                    {post.categories.map((category: any) => (
+                    {post.categories.map((category: Category) => (
                       <Link
                         key={category.slug.current}
                         href={`/blog/category/${category.slug.current}`}
@@ -128,7 +129,7 @@ export default async function CategoryPage({ params }: Props) {
                   
                   {post.tags && post.tags.length > 0 && (
                     <div className="flex flex-wrap gap-1">
-                      {post.tags.slice(0, 2).map((tag: any) => (
+                      {post.tags.slice(0, 2).map((tag: Tag) => (
                         <Link
                           key={tag.slug.current}
                           href={`/blog/tag/${tag.slug.current}`}
