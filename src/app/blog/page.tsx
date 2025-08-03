@@ -38,14 +38,16 @@ export default async function BlogPage() {
                   <div className="md:flex">
                     {post.image && (
                       <div className="md:w-1/3">
-                        <div className="h-48 md:h-full relative">
-                          <Image
-                            src={urlFor(post.image).width(400).height(300).url()}
-                            alt={post.image.alt || post.title}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
+                        <Link href={`/blog/${post.slug.current}`}>
+                          <div className="h-48 md:h-full relative cursor-pointer hover:opacity-90 transition-opacity">
+                            <Image
+                              src={urlFor(post.image).width(400).height(300).url()}
+                              alt={post.image.alt || post.title}
+                              fill
+                              className="object-cover"
+                            />
+                          </div>
+                        </Link>
                       </div>
                     )}
                     <div className={`p-6 ${post.image ? 'md:w-2/3' : 'w-full'}`}>
@@ -74,9 +76,11 @@ export default async function BlogPage() {
                       </h2>
                       
                       {post.excerpt && (
-                        <p className="text-gray-600 mb-4 line-clamp-3">
-                          {post.excerpt}
-                        </p>
+                        <Link href={`/blog/${post.slug.current}`}>
+                          <p className="text-gray-600 mb-4 line-clamp-3 cursor-pointer hover:text-gray-800 transition-colors">
+                            {post.excerpt}
+                          </p>
+                        </Link>
                       )}
                       
                       <div className="flex items-center justify-between">

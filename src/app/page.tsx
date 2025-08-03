@@ -72,14 +72,16 @@ export default async function HomePage() {
               {featuredPosts.map((post: Post) => (
                 <article key={post._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                   {post.image && (
-                    <div className="h-48 relative">
-                      <Image
-                        src={urlFor(post.image).width(400).height(200).url()}
-                        alt={post.image.alt || post.title}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
+                    <Link href={`/blog/${post.slug.current}`}>
+                      <div className="h-48 relative cursor-pointer hover:opacity-90 transition-opacity">
+                        <Image
+                          src={urlFor(post.image).width(400).height(200).url()}
+                          alt={post.image.alt || post.title}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    </Link>
                   )}
                   <div className="p-6">
                     {post.categories && post.categories.length > 0 && (
@@ -99,12 +101,19 @@ export default async function HomePage() {
                       </div>
                     )}
                     <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
-                      {post.title}
+                      <Link 
+                        href={`/blog/${post.slug.current}`}
+                        className="hover:text-primary-600 transition-colors"
+                      >
+                        {post.title}
+                      </Link>
                     </h3>
                     {post.excerpt && (
-                      <p className="text-gray-600 mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
+                      <Link href={`/blog/${post.slug.current}`}>
+                        <p className="text-gray-600 mb-4 line-clamp-3 cursor-pointer hover:text-gray-800 transition-colors">
+                          {post.excerpt}
+                        </p>
+                      </Link>
                     )}
                     <div className="flex items-center justify-between">
                       <span className="text-sm text-gray-500">
