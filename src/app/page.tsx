@@ -186,9 +186,9 @@ export default async function HomePage() {
               SNSでフォロー
             </h2>
             <div className="flex justify-center space-x-6">
-              {profile.socialLinks.x && (
+              {profile.socialLinks.twitter && (
                 <a 
-                  href={profile.socialLinks.x}
+                  href={profile.socialLinks.twitter}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-400 hover:text-primary-600 transition-colors"

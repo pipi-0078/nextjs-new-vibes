@@ -55,7 +55,7 @@ export default async function ContactPage() {
               </div>
             )}
 
-            {profile?.socialLinks?.x && (
+            {profile?.socialLinks?.twitter && (
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -72,7 +72,7 @@ export default async function ContactPage() {
                     DMまたはメンションでお気軽にお声がけください。
                   </p>
                   <a 
-                    href={profile.socialLinks.x}
+                    href={profile.socialLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"

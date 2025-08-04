@@ -125,9 +125,9 @@ export default async function ProfilePage() {
             <div>
               <h2 className="text-2xl font-bold text-gray-900 mb-4">SNS</h2>
               <div className="flex flex-wrap gap-4">
-                {profile.socialLinks.x && (
+                {profile.socialLinks.twitter && (
                   <a 
-                    href={profile.socialLinks.x}
+                    href={profile.socialLinks.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
