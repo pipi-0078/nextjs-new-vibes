@@ -1,11 +1,17 @@
-import { client } from '../sanity/client'
+import { client, previewClient } from '../sanity/client'
 import { groq } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
+import { draftMode } from 'next/headers'
 
 const builder = imageUrlBuilder(client)
 
 export function urlFor(source: { asset: { _ref: string } }) {
   return builder.image(source)
+}
+
+function getClient() {
+  const { isEnabled } = draftMode()
+  return isEnabled ? previewClient : client
 }
 
 export async function getPosts(start = 0, end = 10) {
@@ -46,23 +52,42 @@ export async function getFeaturedPosts() {
 }
 
 export async function getPost(slug: string) {
-  return client.fetch(
-    groq`
-      *[_type == "post" && slug.current == $slug && !draft][0] {
-        _id,
-        title,
-        slug,
-        excerpt,
-        publishedAt,
-        updatedAt,
-        image,
-        body,
-        "categories": categories[]->{title, slug, color},
-        "tags": tags[]->{title, slug}
-      }
-    `,
-    { slug }
-  )
+  const currentClient = getClient()
+  const { isEnabled } = draftMode()
+  
+  // ドラフトモードの場合はdraftフィルターを除外
+  const query = isEnabled 
+    ? groq`
+        *[_type == "post" && slug.current == $slug][0] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          publishedAt,
+          updatedAt,
+          image,
+          body,
+          draft,
+          "categories": categories[]->{title, slug, color},
+          "tags": tags[]->{title, slug}
+        }
+      `
+    : groq`
+        *[_type == "post" && slug.current == $slug && !draft][0] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          publishedAt,
+          updatedAt,
+          image,
+          body,
+          "categories": categories[]->{title, slug, color},
+          "tags": tags[]->{title, slug}
+        }
+      `
+  
+  return currentClient.fetch(query, { slug })
 }
 
 export async function getPostsByCategory(categorySlug: string, start = 0, end = 10) {

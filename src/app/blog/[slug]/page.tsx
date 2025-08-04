@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import PortableText from "@/components/PortableText";
 import type { Category, Tag } from "@/types/blog";
+import { draftMode } from "next/headers";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -50,6 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
   const post = await getPost(slug);
+  const { isEnabled: isDraftMode } = draftMode();
 
   if (!post) {
     notFound();
@@ -62,6 +64,22 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <div className="min-h-screen bg-white">
+      {isDraftMode && (
+        <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">プレビューモード</p>
+              <p className="text-sm">このページはプレビューモードで表示されています。下書きコンテンツが含まれている可能性があります。</p>
+            </div>
+            <a
+              href="/api/disable-preview"
+              className="bg-yellow-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-yellow-700 transition-colors"
+            >
+              プレビューを終了
+            </a>
+          </div>
+        </div>
+      )}
       <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white text-gray-800">
       <div className="mb-8">
         <Link 
