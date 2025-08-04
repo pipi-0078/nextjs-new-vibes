@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-xl font-bold text-gray-900 mb-4">New Vibes</h3>
             <p className="text-gray-600 mb-4">
@@ -79,27 +79,6 @@ export default function Footer() {
               <li>
                 <Link href="/contact" className="text-gray-600 hover:text-primary-600 transition-colors">
                   お問い合わせ
-                </Link>
-              </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="text-lg font-semibold text-gray-900 mb-4">カテゴリー</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/blog/category/technology" className="text-gray-600 hover:text-primary-600 transition-colors">
-                  テクノロジー
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog/category/lifestyle" className="text-gray-600 hover:text-primary-600 transition-colors">
-                  ライフスタイル
-                </Link>
-              </li>
-              <li>
-                <Link href="/blog/category/business" className="text-gray-600 hover:text-primary-600 transition-colors">
-                  ビジネス
                 </Link>
               </li>
             </ul>
