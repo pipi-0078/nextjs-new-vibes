@@ -64,7 +64,7 @@ export interface Experience {
 }
 
 export interface SocialLinks {
-  twitter?: string
+  x?: string
   instagram?: string
   youtube?: string
   github?: string

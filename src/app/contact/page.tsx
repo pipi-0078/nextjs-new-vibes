@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "New Vibesへのお問い合わせページです。",
 };
 
-export const revalidate = 3600;
+export const revalidate = 0;
 
 export default async function ContactPage() {
   const profile = await getProfile();
@@ -55,7 +55,7 @@ export default async function ContactPage() {
               </div>
             )}
 
-            {profile?.socialLinks?.twitter && (
+            {profile?.socialLinks?.x && (
               <div className="flex items-start space-x-4">
                 <div className="flex-shrink-0">
                   <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
@@ -66,18 +66,18 @@ export default async function ContactPage() {
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Twitter
+                    𝕏
                   </h3>
                   <p className="text-gray-600 mb-3">
                     DMまたはメンションでお気軽にお声がけください。
                   </p>
                   <a 
-                    href={profile.socialLinks.twitter}
+                    href={profile.socialLinks.x}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
                   >
-                    Twitterで連絡
+𝕏で連絡
                   </a>
                 </div>
               </div>

@@ -142,7 +142,9 @@ export async function getProfile() {
         socialLinks,
         contactEmail
       }
-    `
+    `,
+    {},
+    { next: { revalidate: 0 } }
   )
 }
 
