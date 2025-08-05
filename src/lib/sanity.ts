@@ -1,4 +1,4 @@
-import { client } from '../sanity/client'
+import { client, getClient } from '../sanity/client'
 import { groq } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import { draftMode } from 'next/headers'
@@ -11,23 +11,42 @@ export function urlFor(source: { asset: { _ref: string } }) {
 
 
 export async function getPosts(start = 0, end = 10) {
-  return client.fetch(
-    groq`
-      *[_type == "post" && !draft] | order(publishedAt desc) [$start...$end] {
-        _id,
-        title,
-        slug,
-        excerpt,
-        publishedAt,
-        updatedAt,
-        image,
-        "categories": categories[]->{title, slug, color},
-        "tags": tags[]->{title, slug},
-        featured
-      }
-    `,
-    { start, end }
-  )
+  const { isEnabled: isDraftMode } = await draftMode()
+  const sanityClient = getClient(isDraftMode)
+  
+  // ドラフトモードの場合は下書きも含める
+  const query = isDraftMode
+    ? groq`
+        *[_type == "post"] | order(publishedAt desc) [$start...$end] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          publishedAt,
+          updatedAt,
+          image,
+          draft,
+          "categories": categories[]->{title, slug, color},
+          "tags": tags[]->{title, slug},
+          featured
+        }
+      `
+    : groq`
+        *[_type == "post" && !draft] | order(publishedAt desc) [$start...$end] {
+          _id,
+          title,
+          slug,
+          excerpt,
+          publishedAt,
+          updatedAt,
+          image,
+          "categories": categories[]->{title, slug, color},
+          "tags": tags[]->{title, slug},
+          featured
+        }
+      `
+  
+  return sanityClient.fetch(query, { start, end })
 }
 
 export async function getFeaturedPosts() {
@@ -48,10 +67,13 @@ export async function getFeaturedPosts() {
 }
 
 export async function getPost(slug: string) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled: isDraftMode } = await draftMode()
   
-  // ドラフトモードの場合はdraftフィルターを除外
-  const query = isEnabled 
+  // 適切なクライアントを取得（ドラフトモードの場合はpreviewDraftsを使用）
+  const sanityClient = getClient(isDraftMode)
+  
+  // ドラフトモードの場合は下書きも含めて検索、通常時は公開済みのみ
+  const query = isDraftMode 
     ? groq`
         *[_type == "post" && slug.current == $slug][0] {
           _id,
@@ -82,7 +104,17 @@ export async function getPost(slug: string) {
         }
       `
   
-  return client.fetch(query, { slug })
+  const result = await sanityClient.fetch(query, { slug })
+  
+  // デバッグ用ログ
+  console.log('getPost result:', {
+    slug,
+    isDraftMode,
+    found: !!result,
+    isDraft: result?.draft
+  })
+  
+  return result
 }
 
 export async function getPostsByCategory(categorySlug: string, start = 0, end = 10) {
