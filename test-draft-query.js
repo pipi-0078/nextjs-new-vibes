@@ -28,7 +28,7 @@ const previewClient = createClient({
   apiVersion,
   useCdn: false,
   token,
-  perspective: 'previewDrafts',
+  perspective: 'drafts',
 })
 
 async function testQueries() {
