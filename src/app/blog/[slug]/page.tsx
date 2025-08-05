@@ -53,11 +53,10 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
   const searchParamsResult = await searchParams;
   const isPreview = searchParamsResult?.preview === 'true';
   
-  console.log('Blog post page - Preview mode detection:', {
-    slug,
-    isPreview,
-    searchParams: searchParamsResult
-  });
+  console.log('=== BLOG POST PAGE ===');
+  console.log('Slug:', slug);
+  console.log('Search params:', searchParamsResult);
+  console.log('Is preview:', isPreview);
   
   // プレビューモードの場合は手動でドラフトモードを有効化
   if (isPreview) {
@@ -66,10 +65,20 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
     console.log('Draft mode enabled for preview');
   }
   
-  const post = await getPost(slug);
+  // ドラフトモードの状態を確認
   const { isEnabled: isDraftMode } = await draftMode();
+  console.log('Draft mode is enabled:', isDraftMode);
+  
+  const post = await getPost(slug);
+  console.log('Post result:', {
+    found: !!post,
+    title: post?.title,
+    draft: post?.draft,
+    publishedAt: post?.publishedAt
+  });
 
   if (!post) {
+    console.log('Post not found, showing 404');
     notFound();
   }
 

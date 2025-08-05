@@ -34,7 +34,7 @@ export function getClient(isDraftMode: boolean = false): SanityClient {
       useCdn: false,
       ignoreBrowserTokenWarning: true,
       // 下書きを含めて取得するための重要な設定
-      perspective: 'previewDrafts',
+      perspective: 'drafts',
     });
   }
   
