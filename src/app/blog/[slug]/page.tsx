@@ -48,10 +48,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function BlogPostPage({ params, searchParams }: Props & { searchParams: Promise<{ preview?: string }> }) {
   const { slug } = await params;
+  const searchParamsResult = await searchParams;
+  const isPreview = searchParamsResult?.preview === 'true';
+  
+  console.log('Blog post page - Preview mode detection:', {
+    slug,
+    isPreview,
+    searchParams: searchParamsResult
+  });
+  
+  // プレビューモードの場合は手動でドラフトモードを有効化
+  if (isPreview) {
+    const draft = await draftMode();
+    draft.enable();
+    console.log('Draft mode enabled for preview');
+  }
+  
   const post = await getPost(slug);
-  const { isEnabled: isDraftMode } = draftMode();
+  const { isEnabled: isDraftMode } = await draftMode();
 
   if (!post) {
     notFound();

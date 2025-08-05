@@ -5,7 +5,23 @@ import type { Post, Category, Experience } from "@/types/blog";
 
 export const revalidate = 0;
 
-export default async function HomePage() {
+export default async function HomePage({ searchParams }: { searchParams: Promise<{ preview?: string }> }) {
+  const searchParamsResult = await searchParams;
+  const isPreview = searchParamsResult?.preview === 'true';
+  
+  console.log('Home page - Preview mode detection:', {
+    isPreview,
+    searchParams: searchParamsResult
+  });
+  
+  // プレビューモードの場合は手動でドラフトモードを有効化
+  if (isPreview) {
+    const { draftMode } = await import('next/headers');
+    const draft = await draftMode();
+    draft.enable();
+    console.log('Draft mode enabled for home preview');
+  }
+  
   const [featuredPosts, profile] = await Promise.all([
     getFeaturedPosts(),
     getProfile()

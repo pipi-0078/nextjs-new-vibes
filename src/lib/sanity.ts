@@ -1,4 +1,4 @@
-import { client, previewClient } from '../sanity/client'
+import { client } from '../sanity/client'
 import { groq } from 'next-sanity'
 import imageUrlBuilder from '@sanity/image-url'
 import { draftMode } from 'next/headers'
@@ -9,10 +9,6 @@ export function urlFor(source: { asset: { _ref: string } }) {
   return builder.image(source)
 }
 
-function getClient() {
-  const { isEnabled } = draftMode()
-  return isEnabled ? previewClient : client
-}
 
 export async function getPosts(start = 0, end = 10) {
   return client.fetch(
@@ -52,8 +48,7 @@ export async function getFeaturedPosts() {
 }
 
 export async function getPost(slug: string) {
-  const currentClient = getClient()
-  const { isEnabled } = draftMode()
+  const { isEnabled } = await draftMode()
   
   // ドラフトモードの場合はdraftフィルターを除外
   const query = isEnabled 
@@ -87,7 +82,7 @@ export async function getPost(slug: string) {
         }
       `
   
-  return currentClient.fetch(query, { slug })
+  return client.fetch(query, { slug })
 }
 
 export async function getPostsByCategory(categorySlug: string, start = 0, end = 10) {
@@ -167,9 +162,7 @@ export async function getProfile() {
         socialLinks,
         contactEmail
       }
-    `,
-    {},
-    { next: { revalidate: 0 } }
+    `
   )
 }
 

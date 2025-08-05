@@ -82,3 +82,25 @@ article, section, div, p, h1, h2, h3, h4, h5, h6, span, li, td, th {
     background-color: #ffffff !important;
   }
 }
+
+/* Visual Editing styles */
+[data-sanity-edit-target] {
+  outline: 2px dashed transparent;
+  outline-offset: 2px;
+  transition: outline-color 0.2s ease;
+}
+
+[data-sanity-edit-target]:hover {
+  outline-color: #3b82f6;
+  cursor: pointer;
+}
+
+[data-sanity-edit-target][data-sanity-focused] {
+  outline-color: #1d4ed8;
+  outline-style: solid;
+}
+
+/* Ensure visual editing overlay works properly */
+[data-sanity] {
+  position: relative;
+}

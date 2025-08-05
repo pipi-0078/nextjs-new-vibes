@@ -1,15 +1,10 @@
-import { NextRequest } from 'next/server'
+import { draftMode } from 'next/headers'
+import { redirect } from 'next/navigation'
+import type { NextRequest } from 'next/server'
 
 export async function GET(request: NextRequest) {
-  const response = new Response(null, {
-    status: 307,
-    headers: {
-      Location: new URL('/', request.url).toString(),
-    },
-  })
+  const draft = await draftMode()
+  draft.disable()
   
-  // Clear draft mode cookie
-  response.headers.set('Set-Cookie', 'draftMode=; Path=/; HttpOnly; SameSite=Strict; Max-Age=0')
-  
-  return response
+  redirect('/')
 }
