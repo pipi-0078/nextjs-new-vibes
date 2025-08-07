@@ -126,18 +126,15 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodeURIComponent(shareUrl)}`;
 
-  // 目次用の見出し抽出
-  const headings = post.body ? extractHeadings(post.body) : []
-  
-  // デバッグ情報（開発環境でのみ）
-  if (process.env.NODE_ENV === 'development') {
-    console.log('Blog post debug:', {
-      hasBody: !!post.body,
-      bodyType: typeof post.body,
-      bodyLength: Array.isArray(post.body) ? post.body.length : 'not array',
-      headingsFound: headings.length,
-      headings: headings
-    })
+  // 目次用の見出し抽出（安全にエラーハンドリング）
+  let headings: { id: string; text: string; level: number }[] = []
+  try {
+    if (post.body && Array.isArray(post.body)) {
+      headings = extractHeadings(post.body)
+    }
+  } catch (error) {
+    console.error('Heading extraction failed:', error)
+    headings = []
   }
 
   return (
@@ -322,7 +319,14 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
           {/* 右サイドバー */}
           <aside className="w-full lg:w-80 flex-shrink-0">
-            <TableOfContents headings={headings} />
+            {headings && Array.isArray(headings) ? (
+              <TableOfContents headings={headings} />
+            ) : (
+              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+                <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
+                <p className="text-gray-600 text-sm">目次を読み込み中...</p>
+              </div>
+            )}
           </aside>
         </div>
       </div>
