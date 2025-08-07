@@ -45,40 +45,59 @@ const components: Partial<PortableTextReactComponents> = {
       )
       
       return (
-        <div className="my-8 bg-white overflow-x-auto">
+        <div className="my-8 bg-white">
           {value.title && (
             <h3 className="text-lg font-semibold text-gray-800 mb-4">
               {value.title}
             </h3>
           )}
-          <table className="w-full border-collapse border border-gray-300 shadow-sm rounded-lg overflow-hidden">
-            <thead className="bg-gray-50">
-              <tr>
-                {headers.map((header: string, index: number) => (
-                  <th 
-                    key={index}
-                    className="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700"
-                  >
-                    {header}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row: string[], rowIndex: number) => (
-                <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
-                  {row.map((cell: string, cellIndex: number) => (
-                    <td 
-                      key={cellIndex}
-                      className="border border-gray-300 px-4 py-2 text-gray-800"
+          <div className="overflow-x-auto border-2 border-gray-300 rounded-lg shadow-sm">
+            <table className="w-full border-collapse min-w-full">
+              <thead className="bg-gray-50">
+                <tr>
+                  {headers.map((header: string, index: number) => (
+                    <th 
+                      key={index}
+                      className={`
+                        border-r border-b border-gray-300 px-4 py-3 text-left font-semibold text-gray-700 whitespace-nowrap
+                        ${index === 0 ? 'sticky left-0 bg-gray-100 z-10 shadow-sm' : ''}
+                        ${index === headers.length - 1 ? 'border-r-0' : ''}
+                      `}
+                      style={index === 0 ? {
+                        minWidth: '120px',
+                        backgroundColor: '#f8f9fa'
+                      } : {}}
                     >
-                      {cell}
-                    </td>
+                      {header}
+                    </th>
                   ))}
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {rows.map((row: string[], rowIndex: number) => (
+                  <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                    {row.map((cell: string, cellIndex: number) => (
+                      <td 
+                        key={cellIndex}
+                        className={`
+                          border-r border-b border-gray-300 px-4 py-2 text-gray-800 whitespace-nowrap
+                          ${cellIndex === 0 ? 'sticky left-0 z-10 shadow-sm font-medium' : ''}
+                          ${cellIndex === row.length - 1 ? 'border-r-0' : ''}
+                          ${rowIndex === rows.length - 1 ? 'border-b-0' : ''}
+                        `}
+                        style={cellIndex === 0 ? {
+                          minWidth: '120px',
+                          backgroundColor: rowIndex % 2 === 0 ? '#ffffff' : '#f9fafb'
+                        } : {}}
+                      >
+                        {cell}
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
           {value.caption && (
             <p className="text-sm text-gray-600 mt-2 italic text-center">
               {value.caption}
