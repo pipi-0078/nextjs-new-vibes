@@ -30,13 +30,18 @@ const components: Partial<PortableTextReactComponents> = {
         return null
       }
       
-      // Parse CSV input to get headers and rows
+      // Parse CSV/TSV input to get headers and rows
       const lines = value.csvInput.trim().split('\n')
       if (lines.length === 0) return null
       
-      const headers = lines[0].split(',').map((h: string) => h.trim())
+      // Detect delimiter (tab or comma)
+      const firstLine = lines[0]
+      const isTabSeparated = firstLine.includes('\t') && !firstLine.includes(',')
+      const delimiter = isTabSeparated ? '\t' : ','
+      
+      const headers = lines[0].split(delimiter).map((h: string) => h.trim())
       const rows = lines.slice(1).map((line: string) => 
-        line.split(',').map((cell: string) => cell.trim())
+        line.split(delimiter).map((cell: string) => cell.trim())
       )
       
       return (
