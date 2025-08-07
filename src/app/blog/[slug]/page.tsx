@@ -324,7 +324,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
             ) : (
               <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
                 <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
-                <p className="text-gray-600 text-sm">目次を読み込み中...</p>
+                <p className="text-gray-600 text-sm">目次を読み込み中です...</p>
               </div>
             )}
           </aside>
