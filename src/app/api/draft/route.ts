@@ -11,12 +11,18 @@ export async function GET(request: NextRequest) {
   const path = searchParams.get('path')
 
   console.log('Parameters:', { slug, path })
+  console.log('Environment check:', {
+    hasReadToken: !!process.env.SANITY_API_READ_TOKEN,
+    hasWriteToken: !!process.env.SANITY_API_TOKEN,
+    nodeEnv: process.env.NODE_ENV
+  })
 
   // Enable draft mode
   const draft = await draftMode()
   draft.enable()
   
-  console.log('Draft mode enabled successfully')
+  const { isEnabled } = await draftMode()
+  console.log('Draft mode status:', { isEnabled })
 
   // Determine the redirect path
   let redirectPath = '/'

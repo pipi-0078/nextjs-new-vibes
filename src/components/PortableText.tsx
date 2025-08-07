@@ -25,6 +25,63 @@ const components: Partial<PortableTextReactComponents> = {
         </div>
       )
     },
+    table: ({ value }) => {
+      if (!value?.csvInput) {
+        return null
+      }
+      
+      // Parse CSV input to get headers and rows
+      const lines = value.csvInput.trim().split('\n')
+      if (lines.length === 0) return null
+      
+      const headers = lines[0].split(',').map((h: string) => h.trim())
+      const rows = lines.slice(1).map((line: string) => 
+        line.split(',').map((cell: string) => cell.trim())
+      )
+      
+      return (
+        <div className="my-8 bg-white overflow-x-auto">
+          {value.title && (
+            <h3 className="text-lg font-semibold text-gray-800 mb-4">
+              {value.title}
+            </h3>
+          )}
+          <table className="w-full border-collapse border border-gray-300 shadow-sm rounded-lg overflow-hidden">
+            <thead className="bg-gray-50">
+              <tr>
+                {headers.map((header: string, index: number) => (
+                  <th 
+                    key={index}
+                    className="border border-gray-300 px-4 py-2 text-left font-semibold text-gray-700"
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row: string[], rowIndex: number) => (
+                <tr key={rowIndex} className={rowIndex % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
+                  {row.map((cell: string, cellIndex: number) => (
+                    <td 
+                      key={cellIndex}
+                      className="border border-gray-300 px-4 py-2 text-gray-800"
+                    >
+                      {cell}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {value.caption && (
+            <p className="text-sm text-gray-600 mt-2 italic text-center">
+              {value.caption}
+            </p>
+          )}
+        </div>
+      )
+    },
   },
   marks: {
     link: ({ children, value }) => {
@@ -95,7 +152,7 @@ const components: Partial<PortableTextReactComponents> = {
 }
 
 interface PortableTextProps {
-  value: unknown
+  value: any
 }
 
 export default function PortableText({ value }: PortableTextProps) {
