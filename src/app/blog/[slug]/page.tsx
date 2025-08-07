@@ -7,7 +7,6 @@ import PortableText from "@/components/PortableText";
 import dynamic from 'next/dynamic';
 
 const TableOfContents = dynamic(() => import('@/components/TableOfContents'), {
-  ssr: false,
   loading: () => (
     <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
       <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
