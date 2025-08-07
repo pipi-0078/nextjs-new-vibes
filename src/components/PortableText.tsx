@@ -51,7 +51,7 @@ const components: Partial<PortableTextReactComponents> = {
               {value.title}
             </h3>
           )}
-          <div className="overflow-x-auto border-2 border-gray-300 rounded-lg shadow-sm">
+          <div className="overflow-x-auto border border-gray-200 rounded-lg shadow-sm">
             <table className="w-full border-collapse min-w-full">
               <thead className="bg-gray-50">
                 <tr>
@@ -59,13 +59,13 @@ const components: Partial<PortableTextReactComponents> = {
                     <th 
                       key={index}
                       className={`
-                        border-r border-b border-gray-300 px-4 py-3 text-left font-semibold text-gray-700 whitespace-nowrap
-                        ${index === 0 ? 'sticky left-0 bg-gray-100 z-10 shadow-sm' : ''}
+                        border-r border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-700 whitespace-nowrap
+                        ${index === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}
                         ${index === headers.length - 1 ? 'border-r-0' : ''}
                       `}
                       style={index === 0 ? {
                         minWidth: '120px',
-                        backgroundColor: '#f8f9fa'
+                        backgroundColor: '#f1f5f9'
                       } : {}}
                     >
                       {header}
@@ -80,14 +80,14 @@ const components: Partial<PortableTextReactComponents> = {
                       <td 
                         key={cellIndex}
                         className={`
-                          border-r border-b border-gray-300 px-4 py-2 text-gray-800 whitespace-nowrap
+                          border-r border-b border-gray-200 px-4 py-2 text-gray-800 whitespace-nowrap
                           ${cellIndex === 0 ? 'sticky left-0 z-10 shadow-sm font-medium' : ''}
                           ${cellIndex === row.length - 1 ? 'border-r-0' : ''}
                           ${rowIndex === rows.length - 1 ? 'border-b-0' : ''}
                         `}
                         style={cellIndex === 0 ? {
                           minWidth: '120px',
-                          backgroundColor: rowIndex % 2 === 0 ? '#ffffff' : '#f9fafb'
+                          backgroundColor: rowIndex % 2 === 0 ? '#f8fafc' : '#f1f5f9'
                         } : {}}
                       >
                         {cell}
