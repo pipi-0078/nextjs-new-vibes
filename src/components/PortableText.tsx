@@ -60,12 +60,12 @@ const components: Partial<PortableTextReactComponents> = {
                       key={index}
                       className={`
                         border-r border-b border-gray-200 px-4 py-3 text-left font-semibold text-gray-700 whitespace-nowrap
-                        ${index === 0 ? 'sticky left-0 z-10 shadow-sm' : ''}
+                        ${index === 0 ? 'sticky left-0 z-10 shadow-sm bg-slate-100' : ''}
                         ${index === headers.length - 1 ? 'border-r-0' : ''}
                       `}
                       style={index === 0 ? {
                         minWidth: '120px',
-                        backgroundColor: '#f1f5f9'
+                        backgroundColor: '#f1f5f9 !important'
                       } : {}}
                     >
                       {header}
@@ -87,7 +87,7 @@ const components: Partial<PortableTextReactComponents> = {
                         `}
                         style={cellIndex === 0 ? {
                           minWidth: '120px',
-                          backgroundColor: rowIndex % 2 === 0 ? '#f8fafc' : '#f1f5f9'
+                          backgroundColor: rowIndex % 2 === 0 ? '#f8fafc !important' : '#f1f5f9 !important'
                         } : {}}
                       >
                         {cell}
