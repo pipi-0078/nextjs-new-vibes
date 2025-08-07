@@ -51,26 +51,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 // 見出しを抽出するヘルパー関数
 function extractHeadings(blocks: any[]) {
-  if (!Array.isArray(blocks)) return []
-  
-  return blocks
-    .filter((block) => block._type === 'block' && ['h1', 'h2', 'h3', 'h4'].includes(block.style))
-    .map((block, index) => {
-      const text = block.children
-        ?.map((child: any) => child.text || '')
-        .join('')
-        .trim() || ''
-      
-      if (!text) return null
-      
-      const id = `heading-${block._key || block.style}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
-      return {
-        id,
-        text,
-        level: parseInt(block.style.substring(1))
-      }
-    })
-    .filter((item): item is { id: string; text: string; level: number } => item !== null)
+  try {
+    if (!Array.isArray(blocks)) return []
+    
+    return blocks
+      .filter((block) => {
+        return (
+          block && 
+          typeof block === 'object' &&
+          block._type === 'block' && 
+          block.style &&
+          ['h1', 'h2', 'h3', 'h4'].includes(block.style) &&
+          Array.isArray(block.children)
+        )
+      })
+      .map((block) => {
+        const text = block.children
+          ?.map((child: any) => (child && child.text) ? child.text : '')
+          .join('')
+          .trim() || ''
+        
+        if (!text) return null
+        
+        const id = `heading-${block._key || block.style}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+        return {
+          id,
+          text,
+          level: parseInt(block.style.substring(1)) || 2
+        }
+      })
+      .filter((item): item is { id: string; text: string; level: number } => item !== null)
+  } catch (error) {
+    console.error('Error extracting headings:', error)
+    return []
+  }
 }
 
 export default async function BlogPostPage({ params, searchParams }: Props & { searchParams: Promise<{ preview?: string }> }) {
@@ -114,6 +128,17 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
   // 目次用の見出し抽出
   const headings = post.body ? extractHeadings(post.body) : []
+  
+  // デバッグ情報（開発環境でのみ）
+  if (process.env.NODE_ENV === 'development') {
+    console.log('Blog post debug:', {
+      hasBody: !!post.body,
+      bodyType: typeof post.body,
+      bodyLength: Array.isArray(post.body) ? post.body.length : 'not array',
+      headingsFound: headings.length,
+      headings: headings
+    })
+  }
 
   return (
     <div className="min-h-screen bg-white">
