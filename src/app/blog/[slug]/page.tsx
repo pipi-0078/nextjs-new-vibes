@@ -4,7 +4,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import PortableText from "@/components/PortableText";
-import TableOfContents from "@/components/TableOfContents";
+import dynamic from 'next/dynamic';
+
+const TableOfContents = dynamic(() => import('@/components/TableOfContents'), {
+  ssr: false,
+  loading: () => (
+    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
+      <p className="text-gray-600 text-sm">目次を読み込み中...</p>
+    </div>
+  )
+});
 import type { Category, Tag } from "@/types/blog";
 import { draftMode } from "next/headers";
 
@@ -319,14 +329,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
           {/* 右サイドバー */}
           <aside className="w-full lg:w-80 flex-shrink-0">
-            {headings && Array.isArray(headings) ? (
-              <TableOfContents headings={headings} />
-            ) : (
-              <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
-                <p className="text-gray-600 text-sm">目次を読み込み中です...</p>
-              </div>
-            )}
+            <TableOfContents headings={headings || []} />
           </aside>
         </div>
       </div>

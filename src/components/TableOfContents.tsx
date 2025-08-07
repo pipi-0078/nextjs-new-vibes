@@ -1,3 +1,5 @@
+'use client'
+
 interface HeadingItem {
   id: string
   text: string
@@ -25,9 +27,11 @@ export default function TableOfContents({ headings, className = '' }: TableOfCon
   }
 
   const scrollToHeading = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (typeof window !== 'undefined') {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
     }
   }
 
