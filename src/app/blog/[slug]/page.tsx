@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import PortableText from "@/components/PortableText";
+import TableOfContents from "@/components/TableOfContents";
 import type { Category, Tag } from "@/types/blog";
 import { draftMode } from "next/headers";
 
@@ -48,6 +49,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
+// 見出しを抽出するヘルパー関数
+function extractHeadings(blocks: any[]) {
+  if (!Array.isArray(blocks)) return []
+  
+  return blocks
+    .filter((block) => block._type === 'block' && ['h1', 'h2', 'h3', 'h4'].includes(block.style))
+    .map((block, index) => {
+      const text = block.children
+        ?.map((child: any) => child.text || '')
+        .join('')
+        .trim() || ''
+      
+      if (!text) return null
+      
+      const id = `heading-${block._key || block.style}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+      return {
+        id,
+        text,
+        level: parseInt(block.style.substring(1))
+      }
+    })
+    .filter((item): item is { id: string; text: string; level: number } => item !== null)
+}
+
 export default async function BlogPostPage({ params, searchParams }: Props & { searchParams: Promise<{ preview?: string }> }) {
   const { slug } = await params;
   const searchParamsResult = await searchParams;
@@ -86,6 +111,9 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
   const xShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`;
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodeURIComponent(shareUrl)}`;
+
+  // 目次用の見出し抽出
+  const headings = post.body ? extractHeadings(post.body) : []
 
   return (
     <div className="min-h-screen bg-white">
@@ -269,10 +297,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
           {/* 右サイドバー */}
           <aside className="w-full lg:w-80 flex-shrink-0">
-            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
-              <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
-              <p className="text-gray-600 text-sm">目次機能を準備中です...</p>
-            </div>
+            <TableOfContents headings={headings} />
           </aside>
         </div>
       </div>

@@ -126,26 +126,42 @@ const components: Partial<PortableTextReactComponents> = {
     },
   },
   block: {
-    h1: ({ children }) => (
-      <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mt-8 mb-4 bg-white">
-        {children}
-      </h1>
-    ),
-    h2: ({ children }) => (
-      <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 mt-6 mb-3 bg-white">
-        {children}
-      </h3>
-    ),
-    h4: ({ children }) => (
-      <h4 className="text-lg md:text-xl font-semibold text-gray-800 mt-6 mb-3 bg-white">
-        {children}
-      </h4>
-    ),
+    h1: ({ children, value }) => {
+      const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+      const id = `heading-${value?._key || 'h1'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+      return (
+        <h1 id={id} className="text-3xl md:text-4xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+          {children}
+        </h1>
+      )
+    },
+    h2: ({ children, value }) => {
+      const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+      const id = `heading-${value?._key || 'h2'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+      return (
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+          {children}
+        </h2>
+      )
+    },
+    h3: ({ children, value }) => {
+      const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+      const id = `heading-${value?._key || 'h3'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+      return (
+        <h3 id={id} className="text-xl md:text-2xl font-semibold text-gray-800 mt-6 mb-3 bg-white scroll-mt-4">
+          {children}
+        </h3>
+      )
+    },
+    h4: ({ children, value }) => {
+      const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+      const id = `heading-${value?._key || 'h4'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+      return (
+        <h4 id={id} className="text-lg md:text-xl font-semibold text-gray-800 mt-6 mb-3 bg-white scroll-mt-4">
+          {children}
+        </h4>
+      )
+    },
     blockquote: ({ children }) => (
       <blockquote className="border-l-4 border-primary-200 pl-6 py-2 my-6 text-gray-700 italic bg-white rounded-r-lg border border-gray-200">
         {children}
