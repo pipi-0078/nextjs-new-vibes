@@ -105,7 +105,9 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </div>
         </div>
       )}
-      <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-white text-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="flex flex-col lg:flex-row gap-8">
+          <article className="flex-1 bg-white text-gray-800">
       <div className="mb-8">
         <Link 
           href="/blog" 
@@ -262,8 +264,18 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
             他の記事を読む
           </Link>
         </div>
-      </footer>
-      </article>
+            </footer>
+          </article>
+
+          {/* 右サイドバー */}
+          <aside className="w-full lg:w-80 flex-shrink-0">
+            <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm">
+              <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
+              <p className="text-gray-600 text-sm">目次機能を準備中です...</p>
+            </div>
+          </aside>
+        </div>
+      </div>
     </div>
   );
 }
