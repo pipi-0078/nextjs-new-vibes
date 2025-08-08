@@ -328,7 +328,9 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
           {/* 右サイドバー */}
           <aside className="hidden lg:block w-full lg:w-72 xl:w-80 flex-shrink-0">
-            <TableOfContents headings={headings || []} />
+            <div className="sticky top-8">
+              <TableOfContents headings={headings || []} />
+            </div>
           </aside>
         </div>
       </div>
