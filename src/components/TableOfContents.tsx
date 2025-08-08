@@ -14,7 +14,7 @@ interface TableOfContentsProps {
 export default function TableOfContents({ headings, className = '' }: TableOfContentsProps) {
   if (headings.length === 0) {
     return (
-      <div className={`bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm ${className}`}>
+      <div className={`bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm w-full ${className}`}>
         <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4 flex items-center">
           <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
@@ -36,29 +36,28 @@ export default function TableOfContents({ headings, className = '' }: TableOfCon
   }
 
   return (
-    <div className={`bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm ${className}`}>
+    <div className={`bg-white border border-gray-200 rounded-lg p-3 sm:p-4 lg:p-6 shadow-sm w-full ${className}`}>
       <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-3 sm:mb-4 flex items-center">
         <svg className="w-4 h-4 sm:w-5 sm:h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" />
         </svg>
         目次
       </h3>
-      <nav className="overflow-hidden">
+      <nav className="w-full">
         <ul className="space-y-1 sm:space-y-2">
           {headings.map((heading) => (
             <li 
               key={heading.id}
-              className="relative"
+              className="w-full"
             >
               <button
                 onClick={() => scrollToHeading(heading.id)}
-                className="block w-full text-left py-1 rounded text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 truncate sm:whitespace-normal"
+                className="block w-full text-left py-1 px-2 rounded text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 whitespace-normal break-words"
                 style={{ 
                   fontSize: '0.8em',
-                  paddingLeft: `${(heading.level - 1) * 8 + 8}px`,
-                  paddingRight: '8px'
+                  paddingLeft: `${(heading.level - 1) * 12 + 8}px`,
+                  lineHeight: '1.4'
                 }}
-                title={heading.text}
               >
                 {heading.text}
               </button>
