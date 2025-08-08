@@ -52,7 +52,8 @@ export default function TableOfContents({ headings, className = '' }: TableOfCon
             >
               <button
                 onClick={() => scrollToHeading(heading.id)}
-                className="block w-full text-left py-1 px-2 rounded text-sm text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200"
+                className="block w-full text-left py-1 px-2 rounded text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200"
+                style={{ fontSize: '0.8em' }}
               >
                 {heading.text}
               </button>
