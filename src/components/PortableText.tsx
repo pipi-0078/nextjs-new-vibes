@@ -141,7 +141,7 @@ const components: Partial<PortableTextReactComponents> = {
       const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
       const id = `heading-${value?._key || 'h1'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
       return (
-        <h1 id={id} className="text-3xl md:text-4xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+        <h1 id={id} className="text-3xl md:text-4xl font-bold text-gray-800 mt-12 mb-6 bg-white scroll-mt-4">
           {children}
         </h1>
       )
@@ -150,7 +150,7 @@ const components: Partial<PortableTextReactComponents> = {
       const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
       const id = `heading-${value?._key || 'h2'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
       return (
-        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-16 mb-6 bg-white scroll-mt-4">
           {children}
         </h2>
       )
@@ -159,7 +159,7 @@ const components: Partial<PortableTextReactComponents> = {
       const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
       const id = `heading-${value?._key || 'h3'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
       return (
-        <h3 id={id} className="text-xl md:text-2xl font-semibold text-gray-800 mt-6 mb-3 bg-white scroll-mt-4">
+        <h3 id={id} className="text-xl md:text-2xl font-semibold text-gray-800 mt-10 mb-4 bg-white scroll-mt-4">
           {children}
         </h3>
       )
@@ -168,30 +168,30 @@ const components: Partial<PortableTextReactComponents> = {
       const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
       const id = `heading-${value?._key || 'h4'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
       return (
-        <h4 id={id} className="text-lg md:text-xl font-semibold text-gray-800 mt-6 mb-3 bg-white scroll-mt-4">
+        <h4 id={id} className="text-lg md:text-xl font-semibold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
           {children}
         </h4>
       )
     },
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-primary-200 pl-6 py-2 my-6 text-gray-700 italic bg-white rounded-r-lg border border-gray-200">
+      <blockquote className="border-l-4 border-primary-200 pl-6 py-3 my-8 text-gray-700 italic bg-white rounded-r-lg border border-gray-200">
         {children}
       </blockquote>
     ),
     normal: ({ children }) => (
-      <p className="text-gray-800 leading-relaxed mb-4 bg-white">
+      <p className="text-gray-800 leading-relaxed mb-6 bg-white">
         {children}
       </p>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside space-y-2 mb-4 text-gray-800 bg-white">
+      <ul className="list-disc list-inside space-y-3 mb-6 text-gray-800 bg-white">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside space-y-2 mb-4 text-gray-800 bg-white">
+      <ol className="list-decimal list-inside space-y-3 mb-6 text-gray-800 bg-white">
         {children}
       </ol>
     ),
@@ -238,7 +238,7 @@ export default function PortableText({ value, headings = [], showInlineTOC = fal
             <TableOfContents headings={headings} />
           </div>
         )}
-        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-16 mb-6 bg-white scroll-mt-4">
           {children}
         </h2>
       </>
