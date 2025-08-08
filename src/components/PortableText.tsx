@@ -235,7 +235,7 @@ export default function PortableText({ value, headings = [], showInlineTOC = fal
       <>
         {isFirstH2 && showInlineTOC && headings.length > 0 && (
           <div className="mb-8">
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headings} collapsible={true} />
           </div>
         )}
         <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-20 mb-6 bg-white scroll-mt-4">
