@@ -282,7 +282,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
 
       {post.body && (
         <div className="prose prose-lg max-w-none prose-gray bg-white text-gray-800">
-          <PortableText value={post.body} />
+          <PortableText value={post.body} headings={headings} showInlineTOC={true} />
         </div>
       )}
 
@@ -327,7 +327,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </article>
 
           {/* 右サイドバー */}
-          <aside className="w-full lg:w-80 flex-shrink-0">
+          <aside className="hidden lg:block w-full lg:w-80 flex-shrink-0">
             <TableOfContents headings={headings || []} />
           </aside>
         </div>

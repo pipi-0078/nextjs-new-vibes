@@ -1,6 +1,17 @@
 import { PortableText as PT, PortableTextReactComponents } from 'next-sanity'
 import Image from 'next/image'
 import { urlFor } from '@/lib/sanity'
+import React from 'react'
+import dynamic from 'next/dynamic'
+
+const TableOfContents = dynamic(() => import('./TableOfContents'), {
+  loading: () => (
+    <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm mb-8">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">目次</h3>
+      <p className="text-gray-600 text-sm">目次を読み込み中...</p>
+    </div>
+  )
+})
 
 const components: Partial<PortableTextReactComponents> = {
   types: {
@@ -195,10 +206,52 @@ const components: Partial<PortableTextReactComponents> = {
   },
 }
 
-interface PortableTextProps {
-  value: any
+interface HeadingItem {
+  id: string
+  text: string
+  level: number
 }
 
-export default function PortableText({ value }: PortableTextProps) {
-  return <PT value={value} components={components} />
+interface PortableTextProps {
+  value: any
+  headings?: HeadingItem[]
+  showInlineTOC?: boolean
+}
+
+export default function PortableText({ value, headings = [], showInlineTOC = false }: PortableTextProps) {
+  // 最初のh2見出しを見つけるためのカウンター
+  let h2Count = 0
+  
+  // 動的にh2コンポーネントを作成
+  const h2Component = ({ children, value }: any) => {
+    const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
+    const id = `heading-${value?._key || 'h2'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
+    
+    // 最初のh2の前に目次を表示
+    const isFirstH2 = h2Count === 0
+    h2Count++
+    
+    return (
+      <>
+        {isFirstH2 && showInlineTOC && headings.length > 0 && (
+          <div className="mb-8">
+            <TableOfContents headings={headings} />
+          </div>
+        )}
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-8 mb-4 bg-white scroll-mt-4">
+          {children}
+        </h2>
+      </>
+    )
+  }
+  
+  const componentsWithTOC: Partial<PortableTextReactComponents> = {
+    ...components,
+    block: {
+      ...components.block,
+      h2: h2Component,
+    }
+  }
+  
+  return <PT value={value} components={componentsWithTOC} />
 }
