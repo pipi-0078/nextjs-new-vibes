@@ -164,9 +164,9 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </div>
         </div>
       )}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex flex-col lg:flex-row gap-8">
-          <article className="flex-1 bg-white text-gray-800">
+      <div className="max-w-6xl mx-auto px-6 sm:px-8 lg:px-12 xl:px-16 py-12">
+        <div className="flex flex-col lg:flex-row gap-12">
+          <article className="flex-1 max-w-4xl mx-auto lg:mx-0 bg-white text-gray-800">
       <div className="mb-8">
         <Link 
           href="/blog" 
@@ -327,7 +327,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </article>
 
           {/* 右サイドバー */}
-          <aside className="hidden lg:block w-full lg:w-80 flex-shrink-0">
+          <aside className="hidden lg:block w-full lg:w-72 xl:w-80 flex-shrink-0">
             <TableOfContents headings={headings || []} />
           </aside>
         </div>
