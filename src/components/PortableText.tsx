@@ -150,7 +150,7 @@ const components: Partial<PortableTextReactComponents> = {
       const text = value?.children?.map((child: any) => child.text || '').join('').trim() || ''
       const id = `heading-${value?._key || 'h2'}-${text.toLowerCase().replace(/[^\w\s]/gi, '').replace(/\s+/g, '-')}`
       return (
-        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-16 mb-6 bg-white scroll-mt-4">
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-20 mb-6 bg-white scroll-mt-4">
           {children}
         </h2>
       )
@@ -238,7 +238,7 @@ export default function PortableText({ value, headings = [], showInlineTOC = fal
             <TableOfContents headings={headings} />
           </div>
         )}
-        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-16 mb-6 bg-white scroll-mt-4">
+        <h2 id={id} className="text-2xl md:text-3xl font-bold text-gray-800 mt-20 mb-6 bg-white scroll-mt-4">
           {children}
         </h2>
       </>
