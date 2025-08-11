@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "New Vibes - 最新のテクノロジーとライフスタイル",
+  title: "ココロテラス・破",
   description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
   keywords: "ブログ, テクノロジー, ライフスタイル, プログラミング",
   authors: [{ name: "New Vibes" }],
   openGraph: {
-    title: "New Vibes - 最新のテクノロジーとライフスタイル",
+    title: "ココロテラス・破",
     description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "New Vibes - 最新のテクノロジーとライフスタイル",
+    title: "ココロテラス・破",
     description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
   },
 };
