@@ -17,19 +17,25 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "KOKORO TERASU 破",
-  description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
-  keywords: "ブログ, テクノロジー, ライフスタイル, プログラミング",
-  authors: [{ name: "New Vibes" }],
+  description: "浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。古来の智慧と現代の心理学を融合させた心の豊かさを追求するサイトです。",
+  keywords: "仏教, 歎異抄, マインドフルネス, 浄土真宗, 心, 智慧, 瞑想, 精神性",
+  authors: [{ name: "KOKORO TERASU" }],
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
   openGraph: {
     title: "KOKORO TERASU 破",
-    description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
+    description: "浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。",
     type: "website",
     locale: "ja_JP",
+    images: [{ url: '/icon.png', width: 512, height: 512 }],
   },
   twitter: {
     card: "summary_large_image",
     title: "KOKORO TERASU 破",
-    description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
+    description: "浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。",
   },
 };
 
