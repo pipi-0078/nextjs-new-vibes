@@ -29,26 +29,34 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
   return (
     <>
-      <section className="bg-gradient-to-br from-primary-50 to-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-5"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-orange-500/20"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+              <div className="mb-6">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white text-sm font-medium rounded-full mb-4 animate-pulse">
+                  ✨ 心の平安を求めて
+                </span>
+              </div>
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-8 leading-tight">
                 {profile?.catchphrase || "仏教をもっと近くに"}
               </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-                {profile?.bio || "最新のテクノロジーとライフスタイルについて発信しています。"}
+              <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
+                {profile?.bio || "古来の智慧と現代のマインドフルネスを融合させ、心の豊かさを追求する旅路をご案内します。"}
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
                 <Link 
                   href="/blog" 
-                  className="bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors"
+                  className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
                 >
-                  ブログを読む
+                  <span className="relative z-10">ブログを読む</span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link 
                   href="/profile" 
-                  className="border border-primary-600 text-primary-600 px-8 py-3 rounded-lg font-semibold hover:bg-primary-50 transition-colors"
+                  className="group relative px-8 py-4 border-2 border-purple-400 text-purple-300 font-semibold rounded-xl hover:bg-purple-400 hover:text-white transition-all duration-300 transform hover:-translate-y-1 backdrop-blur-sm bg-white/5"
                 >
                   プロフィール
                 </Link>
@@ -72,14 +80,20 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+      <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 to-pink-50/50"></div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="mb-4">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+                📖 Featured Articles
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-6">
               注目の記事
             </h2>
-            <p className="text-xl text-gray-600">
-              最新の投稿から厳選した記事をご紹介します
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+              心の成長と平安をもたらす、厳選された智慧の記事をお届けします
             </p>
           </div>
 
@@ -152,22 +166,31 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             </div>
           )}
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-16">
             <Link 
               href="/blog"
-              className="inline-flex items-center px-6 py-3 border border-primary-600 text-primary-600 font-medium rounded-lg hover:bg-primary-50 transition-colors"
+              className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
             >
-              すべての記事を見る
+              <span>すべての記事を見る</span>
+              <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
             </Link>
           </div>
         </div>
       </section>
 
       {profile?.experience && profile.experience.length > 0 && (
-        <section className="py-16 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 relative">
+          <div className="absolute inset-0 bg-[url('/api/placeholder/100/100')] opacity-5 bg-repeat"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+                  🎯 Experience
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-4">
                 経歴・実績
               </h2>
             </div>
@@ -196,9 +219,15 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       )}
 
       {profile?.socialLinks && (
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8">
+        <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-50/30 to-pink-50/30"></div>
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="mb-4">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+                🌐 Connect
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-12">
               SNSでフォロー
             </h2>
             <div className="flex justify-center space-x-6">
@@ -272,35 +301,52 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </section>
       )}
 
-      <section className="py-16 bg-gradient-to-br from-primary-100 to-primary-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10"></div>
+        <div className="absolute top-0 left-0 w-full h-full">
+          <div className="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="mb-8">
+            <span className="inline-block px-6 py-3 bg-gradient-to-r from-purple-600/20 to-pink-600/20 backdrop-blur-sm border border-purple-400/30 text-purple-200 text-sm font-medium rounded-full mb-6">
+              ⛩️ 心の安らぎへの扉
+            </span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-8 leading-tight">
             ココロテラス
           </h2>
-          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
-            浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。<br />
+            <span className="text-purple-300">古の智慧と現代の心理学が織りなす、新しい学びの場所</span>
           </p>
-          <a 
-            href="https://kokoro-terasu.net/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold text-lg rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
-          >
-            ココロテラスはこちら
-            <svg 
-              className="ml-2 w-5 h-5" 
-              fill="none" 
-              stroke="currentColor" 
-              viewBox="0 0 24 24"
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a 
+              href="https://kokoro-terasu.net/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
             >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-              />
-            </svg>
-          </a>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-700 via-pink-700 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 animate-pulse"></div>
+              <span className="relative z-10 mr-3">ココロテラスはこちら</span>
+              <svg 
+                className="relative z-10 w-6 h-6 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path 
+                  strokeLinecap="round" 
+                  strokeLinejoin="round" 
+                  strokeWidth={2} 
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+                />
+              </svg>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
+            </a>
+          </div>
         </div>
       </section>
     </>
