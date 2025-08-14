@@ -24,16 +24,29 @@ export default function ScrollReveal({
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          // アニメーションクラスを追加
+          element.classList.remove(`animate-${animation}`)
+          element.style.animation = 'none'
+          
+          // フォースリフロー
+          element.offsetHeight
+          
           element.classList.add(`animate-${animation}`)
           if (delay > 0) {
             element.classList.add(`delay-${delay}`)
           }
-          observer.unobserve(element)
+        } else {
+          // 画面外に出たらアニメーションをリセット
+          element.classList.remove(`animate-${animation}`)
+          if (delay > 0) {
+            element.classList.remove(`delay-${delay}`)
+          }
+          element.style.animation = ''
         }
       },
       {
         threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        rootMargin: '0px 0px -100px 0px'
       }
     )
 

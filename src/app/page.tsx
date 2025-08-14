@@ -95,8 +95,13 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
           {featuredPosts && featuredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredPosts.map((post: Post) => (
-                <article key={post._id} className="group rounded-lg overflow-hidden transition-all duration-500 hover:transform hover:-translate-y-2">
+              {featuredPosts.map((post: Post, index: number) => (
+                <ScrollReveal 
+                  key={post._id} 
+                  animation="fade-up" 
+                  delay={100 + (index * 100)}
+                >
+                  <article className="group bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-lg overflow-hidden transition-all duration-500 hover:transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/50">
                   {post.image && (
                     <Link href={`/blog/${post.slug.current}`}>
                       <div className="h-48 relative cursor-pointer hover:opacity-90 transition-opacity">
@@ -154,6 +159,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                     </div>
                   </div>
                 </article>
+                </ScrollReveal>
               ))}
             </div>
           ) : (
@@ -191,7 +197,12 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {profile.experience.map((exp: Experience, index: number) => (
-                <div key={index} className="group p-6 rounded-lg transition-all duration-500 hover:transform hover:-translate-y-2 border border-gray-700/30 hover:border-purple-500/50">
+                <ScrollReveal 
+                  key={index} 
+                  animation="fade-left" 
+                  delay={100 + (index * 150)}
+                >
+                  <div className="group bg-gray-800/80 backdrop-blur-sm p-6 rounded-lg transition-all duration-500 hover:transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 border border-gray-700/50 hover:border-purple-500/50">
                   <h3 className="text-xl font-semibold text-white mb-2">
                     {exp.position}
                   </h3>
@@ -206,7 +217,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                       {exp.description}
                     </p>
                   )}
-                </div>
+                  </div>
+                </ScrollReveal>
               ))}
             </div>
             </div>

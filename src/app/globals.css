@@ -271,6 +271,12 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transition: opacity 0.3s ease;
+}
+
+/* Reset state when not animating */
+.scroll-reveal:not([class*="animate-"]) {
+  opacity: 0;
 }
 
 .scroll-reveal.animate-fade-up {
