@@ -80,7 +80,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
                 📖 Featured Articles
               </span>
             </div>
@@ -179,7 +179,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
               <div className="mb-4">
-                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
                   🎯 Experience
                 </span>
               </div>
@@ -216,7 +216,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
                 🌐 Connect
               </span>
             </div>
