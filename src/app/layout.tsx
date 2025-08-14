@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ココロテラス・破",
+  title: "KOKORO TERASU 破",
   description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
   keywords: "ブログ, テクノロジー, ライフスタイル, プログラミング",
   authors: [{ name: "New Vibes" }],
   openGraph: {
-    title: "ココロテラス・破",
+    title: "KOKORO TERASU 破",
     description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
     type: "website",
     locale: "ja_JP",
   },
   twitter: {
     card: "summary_large_image",
-    title: "ココロテラス・破",
+    title: "KOKORO TERASU 破",
     description: "最新のテクノロジーとライフスタイルについて発信するブログサイトです。",
   },
 };
@@ -41,11 +41,11 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-white text-gray-800`}
-        style={{ backgroundColor: '#ffffff', color: '#1f2937' }}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-800 text-gray-100`}
+        style={{ backgroundColor: '#1f2937', color: '#f9fafb' }}
       >
         <Header />
-        <main className="flex-grow bg-white">
+        <main className="flex-grow bg-gray-800">
           {children}
         </main>
         <Footer />
