@@ -222,61 +222,53 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
 
 /* Scroll reveal animations */
 @keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(60px);
+  0% {
+    transform: translateY(60px) scale(0.95);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  100% {
+    transform: translateY(0) scale(1);
   }
 }
 
 @keyframes fadeInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-60px);
+  0% {
+    transform: translateX(-60px) scale(0.95);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  100% {
+    transform: translateX(0) scale(1);
   }
 }
 
 @keyframes fadeInRight {
-  from {
-    opacity: 0;
-    transform: translateX(60px);
+  0% {
+    transform: translateX(60px) scale(0.95);
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+  100% {
+    transform: translateX(0) scale(1);
   }
 }
 
 @keyframes fadeInScale {
-  from {
-    opacity: 0;
+  0% {
     transform: scale(0.8);
   }
-  to {
-    opacity: 1;
+  100% {
     transform: scale(1);
   }
 }
 
 /* Scroll reveal classes */
 .scroll-reveal {
-  opacity: 0;
+  opacity: 1;
   animation-duration: 0.8s;
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   transition: opacity 0.3s ease;
 }
 
-/* Reset state when not animating */
-.scroll-reveal:not([class*="animate-"]) {
-  opacity: 0;
+/* Elements are visible by default, animations add effects */
+.scroll-reveal {
+  transform: translateY(0);
 }
 
 .scroll-reveal.animate-fade-up {
