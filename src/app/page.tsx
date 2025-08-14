@@ -34,7 +34,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-                {profile?.catchphrase || "Welcome to New Vibes"}
+                {profile?.catchphrase || "仏教をもっと近くに"}
               </h1>
               <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                 {profile?.bio || "最新のテクノロジーとライフスタイルについて発信しています。"}
@@ -271,6 +271,38 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         </section>
       )}
+
+      <section className="py-16 bg-gradient-to-br from-primary-100 to-primary-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            ココロテラス
+          </h2>
+          <p className="text-xl text-gray-700 mb-8 max-w-3xl mx-auto">
+            浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。
+          </p>
+          <a 
+            href="https://kokoro-terasu.net/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-8 py-4 bg-primary-600 text-white font-semibold text-lg rounded-lg hover:bg-primary-700 transition-colors shadow-lg hover:shadow-xl"
+          >
+            ココロテラスはこちら
+            <svg 
+              className="ml-2 w-5 h-5" 
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path 
+                strokeLinecap="round" 
+                strokeLinejoin="round" 
+                strokeWidth={2} 
+                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
+              />
+            </svg>
+          </a>
+        </div>
+      </section>
     </>
   );
 }
