@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getFeaturedPosts, getProfile, urlFor } from "@/lib/sanity";
 import type { Post, Category, Experience } from "@/types/blog";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const revalidate = 0;
 
@@ -75,27 +76,27 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
-                📖 Featured Articles
-              </span>
+      <ScrollReveal animation="fade-up">
+        <section className="py-20 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
+                  📖 Featured Articles
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
+                注目の記事
+              </h2>
+              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                心の成長と平安をもたらす、厳選された智慧の記事をお届けします
+              </p>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
-              注目の記事
-            </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              心の成長と平安をもたらす、厳選された智慧の記事をお届けします
-            </p>
-          </div>
 
           {featuredPosts && featuredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredPosts.map((post: Post) => (
-                <article key={post._id} className="bg-gray-800 border border-gray-700 rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:border-purple-500/50 transition-all">
+                <article key={post._id} className="group rounded-lg overflow-hidden transition-all duration-500 hover:transform hover:-translate-y-2">
                   {post.image && (
                     <Link href={`/blog/${post.slug.current}`}>
                       <div className="h-48 relative cursor-pointer hover:opacity-90 transition-opacity">
@@ -170,26 +171,27 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               <span className="ml-2 bg-transparent transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ScrollReveal>
 
       {profile?.experience && profile.experience.length > 0 && (
-        <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative">
-          <div className="absolute inset-0 bg-[url('/api/placeholder/100/100')] opacity-5 bg-repeat"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="mb-4">
-                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
-                  🎯 Experience
-                </span>
+        <ScrollReveal animation="fade-left">
+          <section className="py-20 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <div className="mb-4">
+                  <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
+                    🎯 Experience
+                  </span>
+                </div>
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-4">
+                  経歴・実績
+                </h2>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-4">
-                経歴・実績
-              </h2>
-            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {profile.experience.map((exp: Experience, index: number) => (
-                <div key={index} className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow-md">
+                <div key={index} className="group p-6 rounded-lg transition-all duration-500 hover:transform hover:-translate-y-2 border border-gray-700/30 hover:border-purple-500/50">
                   <h3 className="text-xl font-semibold text-white mb-2">
                     {exp.position}
                   </h3>
@@ -207,22 +209,23 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 </div>
               ))}
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
+        </ScrollReveal>
       )}
 
       {profile?.socialLinks && (
-        <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
-          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div className="mb-4">
-              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
-                🌐 Connect
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-12">
-              SNSでフォロー
-            </h2>
+        <ScrollReveal animation="fade-right">
+          <section className="py-20 relative">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="mb-4">
+                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
+                  🌐 Connect
+                </span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-12">
+                SNSでフォロー
+              </h2>
             <div className="flex justify-center space-x-6">
               {profile.socialLinks.twitter && (
                 <a 
@@ -290,18 +293,14 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 </a>
               )}
             </div>
-          </div>
-        </section>
+            </div>
+          </section>
+        </ScrollReveal>
       )}
 
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-purple-900 to-indigo-900 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-pink-500/10 to-orange-500/10"></div>
-        <div className="absolute top-0 left-0 w-full h-full">
-          <div className="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-          <div className="absolute top-40 right-10 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
-        </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <ScrollReveal animation="fade-scale">
+        <section className="py-24 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-5xl md:text-7xl font-elegant bg-gradient-to-r from-amber-200 via-orange-300 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
             KOKORO TERASU
           </h2>
@@ -322,8 +321,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
             </a>
           </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      </ScrollReveal>
     </>
   );
 }
