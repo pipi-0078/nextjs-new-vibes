@@ -75,8 +75,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative">
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-50/50 to-pink-50/50"></div>
+      <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="mb-4">
@@ -84,10 +84,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 📖 Featured Articles
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
               注目の記事
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
               心の成長と平安をもたらす、厳選された智慧の記事をお届けします
             </p>
           </div>
@@ -95,7 +95,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           {featuredPosts && featuredPosts.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {featuredPosts.map((post: Post) => (
-                <article key={post._id} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <article key={post._id} className="bg-gray-800 border border-gray-700 rounded-lg shadow-lg overflow-hidden hover:shadow-xl hover:border-purple-500/50 transition-all">
                   {post.image && (
                     <Link href={`/blog/${post.slug.current}`}>
                       <div className="h-48 relative cursor-pointer hover:opacity-90 transition-opacity">
@@ -125,7 +125,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                         ))}
                       </div>
                     )}
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3 line-clamp-2">
+                    <h3 className="text-xl font-semibold text-white mb-3 line-clamp-2">
                       <Link 
                         href={`/blog/${post.slug.current}`}
                         className="hover:text-primary-600 transition-colors"
@@ -135,13 +135,13 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                     </h3>
                     {post.excerpt && (
                       <Link href={`/blog/${post.slug.current}`}>
-                        <p className="text-gray-600 mb-4 line-clamp-3 cursor-pointer hover:text-gray-800 transition-colors">
+                        <p className="text-gray-300 mb-4 line-clamp-3 cursor-pointer hover:text-white transition-colors">
                           {post.excerpt}
                         </p>
                       </Link>
                     )}
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-500">
+                      <span className="text-sm text-gray-400">
                         {new Date(post.publishedAt).toLocaleDateString('ja-JP')}
                       </span>
                       <Link 
@@ -157,7 +157,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             </div>
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500">まだ記事がありません。</p>
+              <p className="text-gray-400">まだ記事がありません。</p>
             </div>
           )}
 
@@ -174,7 +174,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       </section>
 
       {profile?.experience && profile.experience.length > 0 && (
-        <section className="py-20 bg-gradient-to-br from-gray-50 to-purple-50 relative">
+        <section className="py-20 bg-gradient-to-br from-gray-900 to-gray-800 relative">
           <div className="absolute inset-0 bg-[url('/api/placeholder/100/100')] opacity-5 bg-repeat"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
@@ -183,24 +183,24 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                   🎯 Experience
                 </span>
               </div>
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-4">
+              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-4">
                 経歴・実績
               </h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {profile.experience.map((exp: Experience, index: number) => (
-                <div key={index} className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <div key={index} className="bg-gray-800 border border-gray-700 p-6 rounded-lg shadow-md">
+                  <h3 className="text-xl font-semibold text-white mb-2">
                     {exp.position}
                   </h3>
-                  <p className="text-primary-600 font-medium mb-2">
+                  <p className="text-purple-400 font-medium mb-2">
                     {exp.company}
                   </p>
-                  <p className="text-gray-500 text-sm mb-4">
+                  <p className="text-gray-400 text-sm mb-4">
                     {exp.period}
                   </p>
                   {exp.description && (
-                    <p className="text-gray-600">
+                    <p className="text-gray-300">
                       {exp.description}
                     </p>
                   )}
@@ -212,15 +212,15 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
       )}
 
       {profile?.socialLinks && (
-        <section className="py-20 bg-gradient-to-b from-white to-gray-50 relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-purple-50/30 to-pink-50/30"></div>
+        <section className="py-20 bg-gradient-to-b from-gray-800 to-gray-900 relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-900/20 to-pink-900/20"></div>
           <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <div className="mb-4">
               <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-100 to-pink-100 text-purple-800 text-sm font-medium rounded-full">
                 🌐 Connect
               </span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-900 via-purple-800 to-pink-800 bg-clip-text text-transparent mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-12">
               SNSでフォロー
             </h2>
             <div className="flex justify-center space-x-6">
@@ -302,7 +302,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-orange-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-8 leading-tight">
+          <h2 className="text-5xl md:text-7xl font-japanese-elegant bg-gradient-to-r from-amber-200 via-orange-300 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
             ココロテラス
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">

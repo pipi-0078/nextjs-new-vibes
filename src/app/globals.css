@@ -1,36 +1,37 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Noto+Serif+JP:wght@400;500;600;700;900&display=swap');
 
-/* Force white background and dark gray text regardless of device settings */
+/* Dark theme with dark gray background */
 :root {
-  --background: #ffffff !important;
-  --foreground: #1f2937 !important;
+  --background: #1f2937 !important;
+  --foreground: #f9fafb !important;
 }
 
 @theme inline {
-  --color-background: #ffffff;
-  --color-foreground: #1f2937;
+  --color-background: #1f2937;
+  --color-foreground: #f9fafb;
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-/* Override dark mode preference - force light mode */
-@media (prefers-color-scheme: dark) {
+/* Force dark mode */
+@media (prefers-color-scheme: light) {
   :root {
-    --background: #ffffff !important;
-    --foreground: #1f2937 !important;
+    --background: #1f2937 !important;
+    --foreground: #f9fafb !important;
   }
 }
 
 body {
-  background: #ffffff !important;
-  color: #1f2937 !important;
+  background: #1f2937 !important;
+  color: #f9fafb !important;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
 }
 
 .prose {
-  color: #1f2937 !important;
-  background-color: #ffffff !important;
+  color: #f9fafb !important;
+  background-color: #1f2937 !important;
 }
 
 .prose h1,
@@ -39,35 +40,35 @@ body {
 .prose h4,
 .prose h5,
 .prose h6 {
-  color: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 .prose p {
-  color: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 .prose strong {
-  color: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 .prose code {
-  color: #1f2937 !important;
-  background-color: #f3f4f6 !important;
+  color: #f9fafb !important;
+  background-color: #374151 !important;
 }
 
 .prose blockquote {
-  border-left-color: #e5e7eb !important;
-  color: #1f2937 !important;
-  background-color: #ffffff !important;
+  border-left-color: #6b7280 !important;
+  color: #f9fafb !important;
+  background-color: #1f2937 !important;
 }
 
-/* Force all text elements to be dark gray on white */
+/* Force all text elements to be light on dark */
 * {
   background-color: inherit;
 }
 
 article, section, div, p, h1, h2, h3, h4, h5, h6, span, li, td, th {
-  color: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 /* Exception for button text - no forced background */
@@ -88,16 +89,16 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
   color: inherit !important;
 }
 
-/* Override any dark mode styles */
-@media (prefers-color-scheme: dark) {
-  body, html, * {
-    background-color: #ffffff !important;
-    color: #1f2937 !important;
+/* Ensure dark theme consistency */
+@media (prefers-color-scheme: light) {
+  body, html {
+    background-color: #1f2937 !important;
+    color: #f9fafb !important;
   }
   
   .prose blockquote {
-    border-left-color: #e5e7eb !important;
-    background-color: #ffffff !important;
+    border-left-color: #6b7280 !important;
+    background-color: #1f2937 !important;
   }
 }
 
@@ -202,4 +203,19 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
   to {
     transform: rotate(360deg);
   }
+}
+
+/* Elegant font classes */
+.font-elegant {
+  font-family: 'Playfair Display', 'Noto Serif JP', serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.font-japanese-elegant {
+  font-family: 'Noto Serif JP', 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
