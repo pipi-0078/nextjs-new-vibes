@@ -81,6 +81,13 @@ a span, button span, .group span {
   color: inherit !important;
 }
 
+/* Ensure SVG and arrow icons have no background */
+a svg, button svg, .group svg, 
+a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
 /* Override any dark mode styles */
 @media (prefers-color-scheme: dark) {
   body, html, * {

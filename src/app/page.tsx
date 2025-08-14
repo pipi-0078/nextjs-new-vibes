@@ -166,10 +166,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               href="/blog"
               className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
             >
-              <span>すべての記事を見る</span>
-              <svg className="ml-2 w-5 h-5 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-              </svg>
+              <span className="bg-transparent">すべての記事を見る</span>
+              <span className="ml-2 bg-transparent transform group-hover:translate-x-1 transition-transform">→</span>
             </Link>
           </div>
         </div>
@@ -319,20 +317,8 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               className="group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-orange-500 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-purple-700 via-pink-700 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              <span className="relative z-10 mr-3">ココロテラスはこちら</span>
-              <svg 
-                className="relative z-10 w-6 h-6 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" 
-                fill="none" 
-                stroke="currentColor" 
-                viewBox="0 0 24 24"
-              >
-                <path 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round" 
-                  strokeWidth={2} 
-                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" 
-                />
-              </svg>
+              <span className="relative z-10 mr-3 bg-transparent">ココロテラスはこちら</span>
+              <span className="relative z-10 text-2xl bg-transparent transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">→</span>
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
             </a>
           </div>
