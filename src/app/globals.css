@@ -70,6 +70,17 @@ article, section, div, p, h1, h2, h3, h4, h5, h6, span, li, td, th {
   color: #1f2937 !important;
 }
 
+/* Exception for button text - no forced background */
+a span, button span, .group span {
+  background-color: transparent !important;
+}
+
+/* Special exception for gradient buttons */
+.bg-gradient-to-r span {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
 /* Override any dark mode styles */
 @media (prefers-color-scheme: dark) {
   body, html, * {
