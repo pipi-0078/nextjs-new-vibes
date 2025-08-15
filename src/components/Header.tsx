@@ -11,7 +11,7 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <Link href="/" className="text-2xl font-elegant text-white hover:text-purple-400 transition-colors">
-            KOKORO TERASU 破
+            KOKORO TERASU <span className="ha-char">破</span>
           </Link>
           
           <nav className="hidden md:flex space-x-8">
