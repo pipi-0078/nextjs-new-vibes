@@ -36,14 +36,14 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-slate-900/30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="text-center lg:text-left">
+            <div className="text-left">
               <h1 className="floating-title text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-cyan-200 via-purple-200 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
                 {profile?.catchphrase || "仏教をもっと近くに"}
               </h1>
               <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl whitespace-pre-line">
                 {profile?.bio || "古来の智慧と現代のマインドフルネスを融合させ、心の豊かさを追求する旅路をご案内します。"}
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-6 justify-start">
                 <Link 
                   href="/blog" 
                   className="group relative px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
