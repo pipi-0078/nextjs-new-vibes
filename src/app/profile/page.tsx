@@ -4,8 +4,8 @@ import type { Metadata } from "next";
 import type { Experience } from "@/types/blog";
 
 export const metadata: Metadata = {
-  title: "プロフィール - New Vibes",
-  description: "New Vibesの運営者プロフィールページです。",
+  title: "プロフィール - KOKORO TERASU 破",
+  description: "KOKORO TERASU 破の運営者プロフィールページです。",
 };
 
 export const revalidate = 0;
@@ -17,8 +17,8 @@ export default async function ProfilePage() {
     return (
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">プロフィール</h1>
-          <p className="text-gray-600">プロフィール情報が設定されていません。</p>
+          <h1 className="text-4xl font-bold text-white mb-4">プロフィール</h1>
+          <p className="text-gray-300">プロフィール情報が設定されていません。</p>
         </div>
       </div>
     );
@@ -26,9 +26,9 @@ export default async function ProfilePage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-lg shadow-lg overflow-hidden">
         {/* Hero Section */}
-        <div className="bg-gradient-to-br from-primary-50 to-white p-8 md:p-12">
+        <div className="bg-gradient-to-br from-gray-900 to-gray-800 p-8 md:p-12">
           <div className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
             {profile.profileImage && (
               <div className="w-48 h-48 relative flex-shrink-0">
@@ -42,16 +42,16 @@ export default async function ProfilePage() {
               </div>
             )}
             <div className="text-center md:text-left">
-              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
                 {profile.name}
               </h1>
               {profile.catchphrase && (
-                <p className="text-xl text-primary-600 font-medium mb-4">
+                <p className="text-xl text-purple-300 font-medium mb-4">
                   {profile.catchphrase}
                 </p>
               )}
               {profile.bio && (
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed">
                   {profile.bio}
                 </p>
               )}
@@ -63,10 +63,10 @@ export default async function ProfilePage() {
         <div className="p-8 md:p-12">
           {profile.contactEmail && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">お問い合わせ</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">お問い合わせ</h2>
               <a 
                 href={`mailto:${profile.contactEmail}`}
-                className="inline-flex items-center px-6 py-3 bg-primary-600 text-white font-medium rounded-lg hover:bg-primary-700 transition-colors"
+                className="inline-flex items-center px-6 py-3 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 transition-colors"
               >
                 <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -79,12 +79,12 @@ export default async function ProfilePage() {
           {/* Skills Section */}
           {profile.skills && profile.skills.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">スキル</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">スキル</h2>
               <div className="flex flex-wrap gap-3">
                 {profile.skills.map((skill: string, index: number) => (
                   <span 
                     key={index}
-                    className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm font-medium"
+                    className="px-4 py-2 bg-gray-700 text-gray-200 rounded-full text-sm font-medium"
                   >
                     {skill}
                   </span>
@@ -96,21 +96,21 @@ export default async function ProfilePage() {
           {/* Experience Section */}
           {profile.experience && profile.experience.length > 0 && (
             <div className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">経歴・実績</h2>
+              <h2 className="text-2xl font-bold text-white mb-6">経歴・実績</h2>
               <div className="space-y-6">
                 {profile.experience.map((exp: Experience, index: number) => (
-                  <div key={index} className="border-l-4 border-primary-200 pl-6 pb-6">
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                  <div key={index} className="border-l-4 border-purple-400 pl-6 pb-6">
+                    <h3 className="text-xl font-semibold text-white mb-2">
                       {exp.position}
                     </h3>
-                    <p className="text-primary-600 font-medium mb-2">
+                    <p className="text-purple-300 font-medium mb-2">
                       {exp.company}
                     </p>
-                    <p className="text-gray-500 text-sm mb-3">
+                    <p className="text-gray-400 text-sm mb-3">
                       {exp.period}
                     </p>
                     {exp.description && (
-                      <p className="text-gray-700">
+                      <p className="text-gray-300">
                         {exp.description}
                       </p>
                     )}
@@ -123,7 +123,7 @@ export default async function ProfilePage() {
           {/* Social Links Section */}
           {profile.socialLinks && (
             <div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">SNS</h2>
+              <h2 className="text-2xl font-bold text-white mb-4">SNS</h2>
               <div className="flex flex-wrap gap-4">
                 {profile.socialLinks.twitter && (
                   <a 
