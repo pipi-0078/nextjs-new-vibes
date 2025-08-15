@@ -40,7 +40,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               <h1 className="floating-title text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-cyan-200 via-purple-200 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
                 {profile?.catchphrase || "仏教をもっと近くに"}
               </h1>
-              <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
+              <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl whitespace-pre-line">
                 {profile?.bio || "古来の智慧と現代のマインドフルネスを融合させ、心の豊かさを追求する旅路をご案内します。"}
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start">

@@ -51,7 +51,7 @@ export default async function ProfilePage() {
                 </p>
               )}
               {profile.bio && (
-                <p className="text-gray-300 leading-relaxed">
+                <p className="text-gray-300 leading-relaxed whitespace-pre-line">
                   {profile.bio}
                 </p>
               )}
