@@ -55,31 +55,62 @@ async function createSampleData() {
     // プロフィール情報を更新
     const profileUpdate = {
       name: 'ヨシボウ',
-      bio: 'テクノロジーとライフスタイルについて発信するブロガーです。最新の技術トレンドや日常の気づきを共有しています。',
-      catchphrase: '技術で人生を豊かに',
+      bio: '仏教は今を生きている"あなた"のために説かれたもの。\n\n仏教を学べば、今まで気づくことのなかった喜びに気付き、\n目を逸らしてきた苦しみと向き合うことができます。\n\nあなたのすぐ近くにある仏教の学びを、誰よりもわかりやすくお届けするサイトです。',
+      catchphrase: '仏教をもっと近くに',
       experience: [
         {
-          company: 'テック企業A',
-          position: 'フロントエンドエンジニア',
-          period: '2020-2023',
-          description: 'React/Next.jsを使ったWebアプリケーション開発'
+          company: '浄土真宗本願寺派',
+          position: '僧侶',
+          period: '現在',
+          description: '浄土真宗本願寺派の僧侶として活動'
+        },
+        {
+          company: 'ブログ運営',
+          position: 'ブロガー',
+          period: '2020年〜現在（4年）',
+          description: '仏教とマインドフルネスに関するブログを運営'
+        },
+        {
+          company: 'マインドフルネススペシャリスト',
+          position: '資格取得',
+          period: '2023年12月',
+          description: 'マインドフルネススペシャリスト資格を取得。メタバース、AIなど最先端の技術に興味津々。趣味はブログと読書と朝活。'
         }
       ],
-      skills: ['React', 'Next.js', 'TypeScript', 'Node.js', 'Python'],
+      skills: [],
       socialLinks: {
         twitter: 'https://twitter.com/yoshibow',
+        instagram: 'https://www.instagram.com/yoshi_bows/',
+        youtube: 'https://www.youtube.com/@yoshibows',
         github: 'https://github.com/yoshibow'
       },
       contactEmail: 'contact@yoshibow.com'
     };
     
-    console.log('注意: この操作にはSANITY_API_TOKENが必要です');
-    console.log('現在はread-onlyモードで動作しています');
+    // プロフィールを更新（存在する場合は更新、存在しない場合は作成）
+    console.log('📝 プロフィールを更新中...');
+    
+    // 既存のプロフィールを確認
+    const existingProfile = await client.fetch(`*[_type == "profile"][0]`);
+    
+    if (existingProfile) {
+      // 既存のプロフィールを更新
+      const result = await client
+        .patch(existingProfile._id)
+        .set(profileUpdate)
+        .commit();
+      console.log('✅ プロフィールを更新しました:', result._id);
+    } else {
+      // 新規プロフィールを作成
+      const result = await client.create({
+        _type: 'profile',
+        ...profileUpdate
+      });
+      console.log('✅ 新しいプロフィールを作成しました:', result._id);
+    }
+    
     console.log('');
-    console.log('作成予定のデータ:');
-    console.log(`カテゴリー: ${categories.length}個`);
-    console.log(`タグ: ${tags.length}個`);
-    console.log('プロフィール: 1個更新');
+    console.log('🎉 プロフィール情報の更新が完了しました！');
     
   } catch (error) {
     console.error('❌ エラー:', error.message);
