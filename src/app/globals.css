@@ -397,10 +397,28 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
   }
 }
 
+@keyframes haRotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .ha-char {
   display: inline-block;
-  animation: haBreakthrough 4s ease-in-out infinite, haPulse 2s ease-in-out infinite;
-  animation-delay: 0s, 1s;
+  animation: haBreakthrough 4s ease-in-out infinite, haPulse 2s ease-in-out infinite, haRotation 8s linear infinite;
+  animation-delay: 0s, 1s, 2s;
   transition: all 0.3s ease;
   transform-origin: center;
   position: relative;
