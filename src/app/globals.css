@@ -401,3 +401,23 @@ a span[class*="→"], button span[class*="→"], .group span[class*="→"] {
   text-shadow: 0 0 30px rgba(255, 71, 87, 1), 0 0 60px rgba(255, 71, 87, 0.7) !important;
 }
 
+/* Gentle floating animation for hero title */
+@keyframes gentleFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.floating-title {
+  animation: gentleFloat 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.floating-title:hover {
+  animation-play-state: paused;
+  transform: translateY(-5px) scale(1.02);
+}
+
