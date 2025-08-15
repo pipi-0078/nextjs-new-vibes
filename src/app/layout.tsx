@@ -20,6 +20,14 @@ export const metadata: Metadata = {
   description: "浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。古来の智慧と現代の心理学を融合させた心の豊かさを追求するサイトです。",
   keywords: "仏教, 歎異抄, マインドフルネス, 浄土真宗, 心, 智慧, 瞑想, 精神性",
   authors: [{ name: "KOKORO TERASU" }],
+  icons: {
+    icon: [
+      { url: '/favicons/favicon.png' },
+      { url: '/favicons/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicons/favicon.png',
+    apple: '/favicons/favicon.png',
+  },
   openGraph: {
     title: "KOKORO TERASU 破",
     description: "浄土真宗の真髄「歎異抄」の超訳や、マインドフルネスについて解説。",
@@ -41,7 +49,10 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <head>
-        <link rel="icon" href="/favicons/favicon.png" />
+        <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicons/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicons/favicon.png" />
+        <link rel="apple-touch-icon" href="/favicons/favicon.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-800 text-gray-100`}
