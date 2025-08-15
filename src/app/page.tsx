@@ -30,13 +30,14 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
 
   return (
     <>
-      <section className="relative bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-[url('/api/placeholder/1920/1080')] opacity-5"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 via-pink-500/20 to-orange-500/20"></div>
+      <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-orange-900 py-24 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/30 via-purple-800/40 via-pink-700/30 to-orange-700/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-violet-600/20 via-fuchsia-600/25 via-rose-500/20 to-amber-500/15"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-slate-900/30"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-8 leading-tight">
+              <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-cyan-200 via-purple-200 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
                 {profile?.catchphrase || "仏教をもっと近くに"}
               </h1>
               <p className="text-xl text-gray-300 mb-10 leading-relaxed max-w-2xl">
