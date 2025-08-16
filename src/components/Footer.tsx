@@ -8,7 +8,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <h3 className="text-xl font-elegant text-white mb-4">KOKORO TERASU 破</h3>
             <p className="text-gray-300">
-              最新のテクノロジーとライフスタイルについて発信するブログサイトです。
+              あなたのすぐ近くにある仏教の学びを、誰よりもわかりやすくお届けするサイトです。
             </p>
           </div>
           
