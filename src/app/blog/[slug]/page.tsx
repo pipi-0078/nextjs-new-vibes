@@ -147,7 +147,10 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white article-page-wrapper">
+      <script dangerouslySetInnerHTML={{
+        __html: `document.body.className = 'article-page';`
+      }} />
       {isDraftMode && (
         <div className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-4">
           <div className="flex items-center justify-between">

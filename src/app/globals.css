@@ -23,52 +23,134 @@
 }
 
 body {
-  background: #ffffff !important;
-  color: #1f2937 !important;
+  background: #1f2937 !important;
+  color: #f9fafb !important;
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   line-height: 1.6;
 }
 
-.prose {
+/* Homepage keeps dark decorative background */
+body.homepage {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
+}
+
+/* Article pages have white background */
+body.article-page {
+  background: #ffffff !important;
+  color: #1f2937 !important;
+}
+
+/* Article page prose styling */
+.article-page-wrapper .prose {
   color: #1f2937 !important;
   background-color: #ffffff !important;
 }
 
-.prose h1,
-.prose h2,
-.prose h3,
-.prose h4,
-.prose h5,
-.prose h6 {
+.article-page-wrapper .prose h1,
+.article-page-wrapper .prose h2,
+.article-page-wrapper .prose h3,
+.article-page-wrapper .prose h4,
+.article-page-wrapper .prose h5,
+.article-page-wrapper .prose h6 {
   color: #1f2937 !important;
 }
 
-.prose p {
+.article-page-wrapper .prose p {
   color: #374151 !important;
 }
 
-.prose strong {
+.article-page-wrapper .prose strong {
   color: #1f2937 !important;
 }
 
-.prose code {
+.article-page-wrapper .prose code {
   color: #1f2937 !important;
   background-color: #f3f4f6 !important;
 }
 
-.prose blockquote {
+.article-page-wrapper .prose blockquote {
   border-left-color: #d1d5db !important;
   color: #374151 !important;
   background-color: #f9fafb !important;
 }
 
-/* Force all text elements to be dark on light */
-* {
+/* Homepage prose keeps original dark styling */
+.homepage-wrapper .prose {
+  color: #f9fafb !important;
+  background-color: inherit !important;
+}
+
+.homepage-wrapper .prose h1,
+.homepage-wrapper .prose h2,
+.homepage-wrapper .prose h3,
+.homepage-wrapper .prose h4,
+.homepage-wrapper .prose h5,
+.homepage-wrapper .prose h6 {
+  color: #f9fafb !important;
+}
+
+.homepage-wrapper .prose p {
+  color: #f9fafb !important;
+}
+
+.homepage-wrapper .prose strong {
+  color: #f9fafb !important;
+}
+
+.homepage-wrapper .prose code {
+  color: #f9fafb !important;
+  background-color: #374151 !important;
+}
+
+.homepage-wrapper .prose blockquote {
+  border-left-color: #6b7280 !important;
+  color: #f9fafb !important;
+  background-color: #1f2937 !important;
+}
+
+/* Default text styling for articles */
+.article-page-wrapper * {
   background-color: inherit;
 }
 
-article, section, div, p, h1, h2, h3, h4, h5, h6, span, li, td, th {
+.article-page-wrapper article, 
+.article-page-wrapper section, 
+.article-page-wrapper div, 
+.article-page-wrapper p, 
+.article-page-wrapper h1, 
+.article-page-wrapper h2, 
+.article-page-wrapper h3, 
+.article-page-wrapper h4, 
+.article-page-wrapper h5, 
+.article-page-wrapper h6, 
+.article-page-wrapper span, 
+.article-page-wrapper li, 
+.article-page-wrapper td, 
+.article-page-wrapper th {
   color: #1f2937 !important;
+}
+
+/* Homepage keeps original decorative styling */
+.homepage-wrapper * {
+  background-color: inherit;
+}
+
+.homepage-wrapper article, 
+.homepage-wrapper section, 
+.homepage-wrapper div, 
+.homepage-wrapper p, 
+.homepage-wrapper h1, 
+.homepage-wrapper h2, 
+.homepage-wrapper h3, 
+.homepage-wrapper h4, 
+.homepage-wrapper h5, 
+.homepage-wrapper h6, 
+.homepage-wrapper span, 
+.homepage-wrapper li, 
+.homepage-wrapper td, 
+.homepage-wrapper th {
+  color: inherit !important;
 }
 
 /* Exception for button text - no forced background */

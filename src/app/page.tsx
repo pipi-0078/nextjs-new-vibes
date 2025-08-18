@@ -29,7 +29,10 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
   ]);
 
   return (
-    <>
+    <div className="homepage-wrapper">
+      <script dangerouslySetInnerHTML={{
+        __html: `document.body.className = 'homepage';`
+      }} />
       <section className="relative bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-orange-900 py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/30 via-purple-800/40 via-pink-700/30 to-orange-700/20"></div>
         <div className="absolute inset-0 bg-gradient-to-bl from-violet-600/20 via-fuchsia-600/25 via-rose-500/20 to-amber-500/15"></div>
@@ -337,6 +340,6 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         </section>
       </ScrollReveal>
-    </>
+    </div>
   );
 }
