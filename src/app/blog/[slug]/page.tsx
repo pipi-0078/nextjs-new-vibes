@@ -164,9 +164,9 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </div>
         </div>
       )}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12">
-        <div className="flex flex-col lg:flex-row gap-12 justify-center">
-          <article className="flex-1 max-w-full sm:max-w-3xl mx-auto lg:mx-0 bg-white text-gray-800">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-8 sm:py-12">
+        <div className="flex flex-col lg:flex-row gap-12">
+          <article className="flex-1 max-w-4xl mx-auto lg:mx-auto bg-white text-gray-800">
       <div className="mb-8">
         <Link 
           href="/blog" 
@@ -327,7 +327,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
           </article>
 
           {/* 右サイドバー */}
-          <aside className="hidden lg:block w-full lg:w-72 xl:w-80 flex-shrink-0">
+          <aside className="hidden lg:block w-full lg:w-72 xl:w-80 flex-shrink-0 lg:ml-auto">
             <div className="sticky top-8">
               <TableOfContents headings={headings || []} />
             </div>
