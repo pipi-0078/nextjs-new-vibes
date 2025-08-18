@@ -6,7 +6,7 @@ import type { Post, Category, Tag } from "@/types/blog";
 
 export const metadata: Metadata = {
   title: "ブログ - New Vibes",
-  description: "最新のテクノロジーとライフスタイルに関する記事一覧",
+  description: "わかりやすいあなたの身近にある仏教の記事一覧",
 };
 
 export const revalidate = 3600;
@@ -19,15 +19,21 @@ export default async function BlogPage() {
   ]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-          ブログ
-        </h1>
-        <p className="text-xl text-gray-600">
-          最新のテクノロジーとライフスタイルについての記事をお届けします
-        </p>
-      </div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-orange-900">
+      <div className="relative">
+        <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/30 via-purple-800/40 via-pink-700/30 to-orange-700/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-bl from-violet-600/20 via-fuchsia-600/25 via-rose-500/20 to-amber-500/15"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-slate-900/30"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
+              ブログ
+            </h1>
+            <p className="text-xl text-white">
+              わかりやすいあなたの身近にある仏教の記事をお届けします
+            </p>
+          </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
         <div className="lg:col-span-3">
@@ -191,6 +197,8 @@ export default async function BlogPage() {
             </div>
           </div>
         </aside>
+      </div>
+        </div>
       </div>
     </div>
   );
