@@ -293,38 +293,33 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between">
           <div className="mb-4 sm:mb-0">
             <h3 className="text-lg font-semibold text-gray-800 mb-2">この記事をシェア</h3>
-            <div className="flex space-x-4">
+            <div className="flex items-center space-x-4">
+              <span>シェア:</span>
               <a
                 href={xShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                className="text-blue-500 hover:text-blue-600 transition-colors"
+                aria-label="𝕏でシェア"
               >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                </svg>
                 𝕏
               </a>
               <a
                 href={facebookShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+                className="text-blue-600 hover:text-blue-700 transition-colors"
+                aria-label="Facebookでシェア"
               >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                </svg>
                 Facebook
               </a>
               <a
                 href={hatenaShareUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+                className="text-blue-700 hover:text-blue-800 transition-colors"
+                aria-label="はてなブックマークでシェア"
               >
-                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2.5 18.5h-3v-13h3v13zm1.5-14.5h3v1.5h-3V4zm3 2.5v11h-3V6.5h3z"/>
-                </svg>
                 はてな
               </a>
             </div>
