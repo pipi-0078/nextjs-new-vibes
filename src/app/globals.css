@@ -153,47 +153,69 @@ body.article-page {
   color: inherit !important;
 }
 
-/* Blog page keeps decorative background but blog cards have proper text colors */
-.blog-page-wrapper * {
-  background-color: inherit;
+/* Blog page specific styling to override global dark theme */
+body.blog-page {
+  background: #1f2937 !important;
+  color: #f9fafb !important;
 }
 
 /* Blog page header text stays white for visibility on dark background */
-.blog-page-wrapper > div > div > div > h1,
-.blog-page-wrapper > div > div > div > p {
+.blog-page-wrapper h1 {
   color: #ffffff !important;
 }
 
-/* Blog cards and sidebar elements have dark text on white background */
-.blog-page-wrapper article,
-.blog-page-wrapper aside div {
+.blog-page-wrapper > div > div > div > div > h1,
+.blog-page-wrapper > div > div > div > div > p {
+  color: #ffffff !important;
+}
+
+/* Force blog cards to have white background and dark text */
+.blog-page-wrapper article.bg-white,
+.blog-page-wrapper .bg-white {
   background-color: #ffffff !important;
-}
-
-.blog-page-wrapper article *,
-.blog-page-wrapper aside * {
   color: #1f2937 !important;
 }
 
-.blog-page-wrapper article h2,
-.blog-page-wrapper article h3,
-.blog-page-wrapper article p,
-.blog-page-wrapper article span,
-.blog-page-wrapper aside h3,
-.blog-page-wrapper aside span,
-.blog-page-wrapper aside div {
+.blog-page-wrapper article.bg-white h2,
+.blog-page-wrapper article.bg-white h3,
+.blog-page-wrapper article.bg-white p,
+.blog-page-wrapper article.bg-white span,
+.blog-page-wrapper article.bg-white div,
+.blog-page-wrapper article.bg-white a {
   color: #1f2937 !important;
 }
 
-.blog-page-wrapper article .text-gray-600,
-.blog-page-wrapper article .text-gray-500,
-.blog-page-wrapper article .text-gray-400 {
+.blog-page-wrapper .bg-white h3,
+.blog-page-wrapper .bg-white span,
+.blog-page-wrapper .bg-white div,
+.blog-page-wrapper .bg-white a,
+.blog-page-wrapper .bg-white p {
+  color: #1f2937 !important;
+}
+
+/* Specific text color overrides for gray text classes */
+.blog-page-wrapper .text-gray-900 {
+  color: #111827 !important;
+}
+
+.blog-page-wrapper .text-gray-800 {
+  color: #1f2937 !important;
+}
+
+.blog-page-wrapper .text-gray-700 {
+  color: #374151 !important;
+}
+
+.blog-page-wrapper .text-gray-600 {
+  color: #4b5563 !important;
+}
+
+.blog-page-wrapper .text-gray-500 {
   color: #6b7280 !important;
 }
 
-.blog-page-wrapper aside .text-gray-700,
-.blog-page-wrapper aside .text-gray-500 {
-  color: #374151 !important;
+.blog-page-wrapper .text-gray-400 {
+  color: #9ca3af !important;
 }
 
 /* Exception for button text - no forced background */
