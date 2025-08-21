@@ -316,6 +316,17 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
                 </svg>
                 Facebook
               </a>
+              <a
+                href={hatenaShareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center px-4 py-2 bg-blue-700 text-white rounded-lg hover:bg-blue-800 transition-colors"
+              >
+                <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm-2.5 18.5h-3v-13h3v13zm1.5-14.5h3v1.5h-3V4zm3 2.5v11h-3V6.5h3z"/>
+                </svg>
+                はてな
+              </a>
             </div>
           </div>
           
