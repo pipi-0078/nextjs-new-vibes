@@ -19,7 +19,10 @@ export default async function BlogPage() {
   ]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-orange-900">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 via-pink-900 to-orange-900 blog-page-wrapper">
+      <script dangerouslySetInnerHTML={{
+        __html: `document.body.className = 'blog-page';`
+      }} />
       <div className="relative">
         <div className="absolute inset-0 bg-gradient-to-tr from-blue-800/30 via-purple-800/40 via-pink-700/30 to-orange-700/20"></div>
         <div className="absolute inset-0 bg-gradient-to-bl from-violet-600/20 via-fuchsia-600/25 via-rose-500/20 to-amber-500/15"></div>

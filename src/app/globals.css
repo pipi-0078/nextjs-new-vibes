@@ -153,6 +153,49 @@ body.article-page {
   color: inherit !important;
 }
 
+/* Blog page keeps decorative background but blog cards have proper text colors */
+.blog-page-wrapper * {
+  background-color: inherit;
+}
+
+/* Blog page header text stays white for visibility on dark background */
+.blog-page-wrapper > div > div > div > h1,
+.blog-page-wrapper > div > div > div > p {
+  color: #ffffff !important;
+}
+
+/* Blog cards and sidebar elements have dark text on white background */
+.blog-page-wrapper article,
+.blog-page-wrapper aside div {
+  background-color: #ffffff !important;
+}
+
+.blog-page-wrapper article *,
+.blog-page-wrapper aside * {
+  color: #1f2937 !important;
+}
+
+.blog-page-wrapper article h2,
+.blog-page-wrapper article h3,
+.blog-page-wrapper article p,
+.blog-page-wrapper article span,
+.blog-page-wrapper aside h3,
+.blog-page-wrapper aside span,
+.blog-page-wrapper aside div {
+  color: #1f2937 !important;
+}
+
+.blog-page-wrapper article .text-gray-600,
+.blog-page-wrapper article .text-gray-500,
+.blog-page-wrapper article .text-gray-400 {
+  color: #6b7280 !important;
+}
+
+.blog-page-wrapper aside .text-gray-700,
+.blog-page-wrapper aside .text-gray-500 {
+  color: #374151 !important;
+}
+
 /* Exception for button text - no forced background */
 a span, button span, .group span {
   background-color: transparent !important;
