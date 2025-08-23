@@ -93,7 +93,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 注目の記事
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                心の成長と平安をもたらす、厳選された智慧の記事をお届けします
+                身近な疑問や悩みを解決する記事をお届けします
               </p>
             </div>
 
