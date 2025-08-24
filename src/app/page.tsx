@@ -336,6 +336,17 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
               <span className="relative z-10 text-2xl bg-transparent transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">→</span>
               <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
             </a>
+            <a 
+              href="https://kokoro-terasu.net/tannisho_portal/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-amber-600 via-yellow-600 to-orange-500 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-amber-500/25 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-amber-700 via-yellow-700 to-orange-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 mr-3 bg-transparent">歎異抄の超解説はこちら</span>
+              <span className="relative z-10 text-2xl bg-transparent transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">📖</span>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-400 to-orange-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
+            </a>
           </div>
           </div>
         </section>
