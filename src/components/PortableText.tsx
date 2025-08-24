@@ -121,6 +121,39 @@ const components: Partial<PortableTextReactComponents> = {
         </div>
       )
     },
+    iframe: ({ value }) => {
+      if (!value?.url) {
+        return null
+      }
+      
+      const aspectRatioStyles = {
+        '16:9': 'aspect-video',
+        '4:3': 'aspect-[4/3]',
+        '1:1': 'aspect-square',
+        'custom': ''
+      }
+      
+      const aspectRatioClass = aspectRatioStyles[value.aspectRatio as keyof typeof aspectRatioStyles] || 'aspect-video'
+      
+      return (
+        <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
+          <div className={`w-full ${aspectRatioClass} relative overflow-hidden rounded-lg shadow-lg`}>
+            <iframe
+              src={value.url}
+              title={value.title || 'Embedded content'}
+              className="absolute inset-0 w-full h-full border-0"
+              allowFullScreen
+              loading="lazy"
+            />
+          </div>
+          {value.title && (
+            <p className="text-center text-sm text-gray-600 mt-2 bg-white">
+              {value.title}
+            </p>
+          )}
+        </div>
+      )
+    },
   },
   marks: {
     link: ({ children, value }) => {
