@@ -22,11 +22,14 @@ export const metadata: Metadata = {
   authors: [{ name: "KOKORO TERASU" }],
   icons: {
     icon: [
-      { url: '/favicons/favicon.png' },
+      { url: '/favicons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/favicons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
       { url: '/favicons/favicon.svg', type: 'image/svg+xml' },
     ],
     shortcut: '/favicons/favicon.png',
-    apple: '/favicons/favicon.png',
+    apple: [
+      { url: '/favicons/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   openGraph: {
     title: "KOKORO TERASU 破",
@@ -50,9 +53,14 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <link rel="icon" href="/favicons/favicon.svg" type="image/svg+xml" />
-        <link rel="icon" href="/favicons/favicon.png" type="image/png" />
-        <link rel="shortcut icon" href="/favicons/favicon.png" />
-        <link rel="apple-touch-icon" href="/favicons/favicon.png" />
+        <link rel="icon" href="/favicons/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="icon" href="/favicons/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicons/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#1f2937" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="KOKORO TERASU 破" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col bg-gray-800 text-gray-100`}
