@@ -90,7 +90,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 </span>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
-                注目の記事
+                最新の記事
               </h2>
               <p className="text-xl text-gray-300 max-w-2xl mx-auto">
                 身近な疑問や悩みを解決する記事をお届けします
