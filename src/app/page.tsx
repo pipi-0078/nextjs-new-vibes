@@ -340,6 +340,32 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
         </section>
       </ScrollReveal>
+
+      <ScrollReveal animation="fade-scale">
+        <section className="py-24 relative overflow-hidden">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-5xl md:text-7xl font-elegant bg-gradient-to-r from-blue-200 via-purple-300 to-pink-300 bg-clip-text text-transparent mb-8 leading-tight">
+            ココロを照らすラジオ、更新中
+          </h2>
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto leading-relaxed">
+            仏教、法話、マインドフルネスなどに関する音声を配信しています
+          </p>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <a 
+              href="https://open.spotify.com/show/7wmjpPbDNrY8p14s6OCBhP?si=21407fb87ac44cce"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative inline-flex items-center px-12 py-6 bg-gradient-to-r from-green-600 via-blue-600 to-purple-500 text-white font-bold text-xl rounded-2xl shadow-2xl hover:shadow-green-500/25 transition-all duration-500 transform hover:-translate-y-2 hover:scale-105 overflow-hidden"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-green-700 via-blue-700 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <span className="relative z-10 mr-3 bg-transparent">ココロを照らすラジオはこちら</span>
+              <span className="relative z-10 text-2xl bg-transparent transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300">🎧</span>
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400 to-blue-400 opacity-30 blur-lg group-hover:opacity-50 group-hover:blur-xl transition-all duration-300"></div>
+            </a>
+          </div>
+          </div>
+        </section>
+      </ScrollReveal>
     </div>
   );
 }
