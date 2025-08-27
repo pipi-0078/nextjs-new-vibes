@@ -129,6 +129,15 @@ const components: Partial<PortableTextReactComponents> = {
       // デバッグ用ログ
       console.log('iframe component called with URL:', value.url)
       
+      // 特定のSpotify URLをテスト
+      const testSpotifyUrl = 'https://open.spotify.com/episode/3gnl7D7ojN3RHgKaFMV0FD?si=8tKG8rzyQU6EqQrmzQVuEA'
+      console.log('Is this the problematic URL?', value.url === testSpotifyUrl)
+      console.log('URL comparison:', {
+        actual: value.url,
+        expected: testSpotifyUrl,
+        match: value.url === testSpotifyUrl
+      })
+      
       // URL正規化（クエリパラメータやフラグメントを除去してドメインチェック）
       const cleanUrl = value.url.split('?')[0].split('#')[0]
       console.log('Clean URL for domain check:', cleanUrl)
@@ -140,6 +149,13 @@ const components: Partial<PortableTextReactComponents> = {
                        cleanUrl.includes('spotify.com') ||
                        value.url.includes('spotify')
       console.log('Spotify detection result:', isSpotify)
+      console.log('Detection breakdown:', {
+        'spotify.com': value.url.includes('spotify.com'),
+        'open.spotify': value.url.includes('open.spotify'),
+        'spotify://': value.url.includes('spotify://'),
+        'cleanUrl spotify.com': cleanUrl.includes('spotify.com'),
+        'spotify': value.url.includes('spotify')
+      })
       
       // URLからembedURLを生成
       const getEmbedUrl = (originalUrl: string): string => {
@@ -207,6 +223,34 @@ const components: Partial<PortableTextReactComponents> = {
               <p className="text-xs text-gray-500">
                 ※ X (Twitter) の埋め込みは現在サポートされていません
               </p>
+            </div>
+          </div>
+        )
+      }
+
+      // 強制テスト: 特定のURLを確実にキャッチ
+      if (value.url === testSpotifyUrl) {
+        console.log('FORCED SPOTIFY LINK CARD for test URL')
+        return (
+          <div className="my-8 bg-white" style={{ width: '100%' }}>
+            <div className="border-4 border-red-500 rounded-lg p-6 bg-red-50">
+              <div className="text-center">
+                <div className="text-4xl mb-4">🔴 TEST</div>
+                <p className="text-lg font-bold text-red-800 mb-2">
+                  強制Spotifyリンクカード（テスト）
+                </p>
+                <p className="text-sm text-red-600 mb-4 break-all">
+                  {value.url}
+                </p>
+                <a 
+                  href={value.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-red-600 text-white px-4 py-2 rounded-full hover:bg-red-700"
+                >
+                  TEST: Spotifyで開く
+                </a>
+              </div>
             </div>
           </div>
         )
