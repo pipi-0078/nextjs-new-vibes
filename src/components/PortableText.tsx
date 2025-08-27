@@ -171,9 +171,13 @@ const components: Partial<PortableTextReactComponents> = {
             }
           }
           
-          // Spotify URL処理 - CSPエラーを避けるため、embedURLを生成しない
+          // Spotify URL処理 - embed形式は許可、通常形式はリンクカード
           if (originalUrl.includes('spotify.com')) {
-            // リンクカード表示するため、元URLをそのまま返す
+            // 既にembed形式の場合は許可（動作することが確認済み）
+            if (originalUrl.includes('/embed/')) {
+              return originalUrl
+            }
+            // 通常形式の場合はリンクカード表示のため、そのまま返す
             return originalUrl
           }
 
@@ -256,9 +260,9 @@ const components: Partial<PortableTextReactComponents> = {
         )
       }
 
-      // Spotify の CSP エラー対策 - 最初からリンクカードのみ表示
-      if (isSpotify) {
-        console.log('Spotify detected, showing link card:', value.url)
+      // Spotify の CSP エラー対策 - embed形式以外はリンクカード表示
+      if (isSpotify && !value.url.includes('/embed/')) {
+        console.log('Spotify non-embed URL detected, showing link card:', value.url)
         // エピソード、トラック、アルバム、プレイリストを判定
         let contentType = 'コンテンツ'
         if (value.url.includes('/episode/')) contentType = 'エピソード'
