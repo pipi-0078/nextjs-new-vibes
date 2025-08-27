@@ -269,6 +269,9 @@ const components: Partial<PortableTextReactComponents> = {
         )
       }
 
+      // embedUrlを先に生成
+      const embedUrl = getEmbedUrl(value.url)
+      
       // Spotify の CSP エラー対策 - 万が一embed変換が失敗した場合のフォールバック
       if (isSpotify && !value.url.includes('/embed/') && !embedUrl.includes('/embed/')) {
         console.log('Spotify fallback to link card:', value.url)
@@ -312,8 +315,6 @@ const components: Partial<PortableTextReactComponents> = {
         )
       }
       
-      // embedUrlは埋め込み可能なプラットフォームのみ生成
-      const embedUrl = getEmbedUrl(value.url)
       console.log('Creating iframe for URL:', value.url, 'embedUrl:', embedUrl)
       
       return (
