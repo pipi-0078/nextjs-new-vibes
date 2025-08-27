@@ -133,6 +133,14 @@ const components: Partial<PortableTextReactComponents> = {
       const cleanUrl = value.url.split('?')[0].split('#')[0]
       console.log('Clean URL for domain check:', cleanUrl)
       
+      // Spotify検出の複数パターン
+      const isSpotify = value.url.includes('spotify.com') || 
+                       value.url.includes('open.spotify') || 
+                       value.url.includes('spotify://') ||
+                       cleanUrl.includes('spotify.com') ||
+                       value.url.includes('spotify')
+      console.log('Spotify detection result:', isSpotify)
+      
       // URLからembedURLを生成
       const getEmbedUrl = (originalUrl: string): string => {
         try {
@@ -205,7 +213,7 @@ const components: Partial<PortableTextReactComponents> = {
       }
 
       // Spotify の CSP エラー対策 - 最初からリンクカードのみ表示
-      if (cleanUrl.includes('spotify.com') || value.url.includes('spotify.com')) {
+      if (isSpotify) {
         console.log('Spotify detected, showing link card:', value.url)
         // エピソード、トラック、アルバム、プレイリストを判定
         let contentType = 'コンテンツ'
