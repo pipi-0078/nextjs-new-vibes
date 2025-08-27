@@ -129,6 +129,10 @@ const components: Partial<PortableTextReactComponents> = {
       // デバッグ用ログ
       console.log('iframe component called with URL:', value.url)
       
+      // URL正規化（クエリパラメータやフラグメントを除去してドメインチェック）
+      const cleanUrl = value.url.split('?')[0].split('#')[0]
+      console.log('Clean URL for domain check:', cleanUrl)
+      
       // URLからembedURLを生成
       const getEmbedUrl = (originalUrl: string): string => {
         try {
@@ -180,7 +184,7 @@ const components: Partial<PortableTextReactComponents> = {
       const aspectRatioClass = aspectRatioStyles[value.aspectRatio as keyof typeof aspectRatioStyles] || 'aspect-video'
       
       // 埋め込み不可能なプラットフォームの場合の特別処理（embedUrl生成より前に処理）
-      if (value.url.includes('twitter.com') || value.url.includes('x.com')) {
+      if (cleanUrl.includes('twitter.com') || cleanUrl.includes('x.com')) {
         console.log('Twitter/X detected, showing link card')
         return (
           <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
@@ -201,7 +205,7 @@ const components: Partial<PortableTextReactComponents> = {
       }
 
       // Spotify の CSP エラー対策 - 最初からリンクカードのみ表示
-      if (value.url.includes('spotify.com')) {
+      if (cleanUrl.includes('spotify.com') || value.url.includes('spotify.com')) {
         console.log('Spotify detected, showing link card:', value.url)
         // エピソード、トラック、アルバム、プレイリストを判定
         let contentType = 'コンテンツ'
