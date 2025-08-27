@@ -126,6 +126,47 @@ const components: Partial<PortableTextReactComponents> = {
         return null
       }
       
+      // URLからembedURLを生成
+      const getEmbedUrl = (originalUrl: string): string => {
+        try {
+          // YouTube URL処理
+          if (originalUrl.includes('youtube.com/watch') || originalUrl.includes('youtu.be/')) {
+            const videoId = originalUrl.includes('youtu.be/') 
+              ? originalUrl.split('youtu.be/')[1].split('?')[0]
+              : new URL(originalUrl).searchParams.get('v')
+            
+            if (videoId) {
+              return `https://www.youtube.com/embed/${videoId}`
+            }
+          }
+          
+          // Spotify URL処理 - CSPエラーを避けるため、embedURLを生成しない
+          if (originalUrl.includes('spotify.com')) {
+            // リンクカード表示するため、元URLをそのまま返す
+            return originalUrl
+          }
+
+          // Vimeo URL処理
+          if (originalUrl.includes('vimeo.com/')) {
+            const videoId = originalUrl.split('vimeo.com/')[1].split('?')[0]
+            if (videoId) {
+              return `https://player.vimeo.com/video/${videoId}`
+            }
+          }
+
+          // X (Twitter) URL処理 - 埋め込み不可
+          if (originalUrl.includes('twitter.com') || originalUrl.includes('x.com')) {
+            return originalUrl // そのまま返すが、後で特別処理
+          }
+          
+          // その他のURL（すでにembed形式の場合など）
+          return originalUrl
+        } catch (error) {
+          console.error('URL parsing error:', error)
+          return originalUrl
+        }
+      }
+      
       const aspectRatioStyles = {
         '16:9': 'aspect-video',
         '4:3': 'aspect-[4/3]',
@@ -135,15 +176,81 @@ const components: Partial<PortableTextReactComponents> = {
       
       const aspectRatioClass = aspectRatioStyles[value.aspectRatio as keyof typeof aspectRatioStyles] || 'aspect-video'
       
+      // 埋め込み不可能なプラットフォームの場合の特別処理（embedUrl生成より前に処理）
+      if (value.url.includes('twitter.com') || value.url.includes('x.com')) {
+        return (
+          <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
+            <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50">
+              <div className="text-4xl mb-4">𝕏</div>
+              <p className="text-lg font-semibold text-gray-700 mb-2">
+                {value.title || 'X (Twitter) 埋め込み'}
+              </p>
+              <p className="text-sm text-gray-600 mb-4 break-all">
+                {value.url}
+              </p>
+              <p className="text-xs text-gray-500">
+                ※ X (Twitter) の埋め込みは現在サポートされていません
+              </p>
+            </div>
+          </div>
+        )
+      }
+
+      // Spotify の CSP エラー対策 - 最初からリンクカードのみ表示
+      if (value.url.includes('spotify.com')) {
+        // エピソード、トラック、アルバム、プレイリストを判定
+        let contentType = 'コンテンツ'
+        if (value.url.includes('/episode/')) contentType = 'エピソード'
+        else if (value.url.includes('/track/')) contentType = '楽曲'
+        else if (value.url.includes('/album/')) contentType = 'アルバム'
+        else if (value.url.includes('/playlist/')) contentType = 'プレイリスト'
+        else if (value.url.includes('/show/')) contentType = '番組'
+        
+        return (
+          <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
+            <div className="border-2 border-green-300 rounded-lg p-6 bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-4">
+                  <div className="text-4xl">🎵</div>
+                  <div>
+                    <p className="text-lg font-semibold text-gray-800 mb-1">
+                      {value.title || `Spotify ${contentType}`}
+                    </p>
+                    <p className="text-sm text-gray-600">
+                      Spotify {contentType}
+                    </p>
+                  </div>
+                </div>
+                <a 
+                  href={value.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center bg-green-600 text-white px-4 py-2 rounded-full hover:bg-green-700 transition-colors text-sm font-medium"
+                >
+                  <svg className="w-4 h-4 mr-2" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z"/>
+                  </svg>
+                  開く
+                </a>
+              </div>
+            </div>
+          </div>
+        )
+      }
+      
+      // embedUrlは埋め込み可能なプラットフォームのみ生成
+      const embedUrl = getEmbedUrl(value.url)
+      
       return (
         <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
           <div className={`w-full ${aspectRatioClass} relative overflow-hidden rounded-lg shadow-lg`}>
             <iframe
-              src={value.url}
+              src={embedUrl}
               title={value.title || 'Embedded content'}
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen
               loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             />
           </div>
           {value.title && (
@@ -283,7 +390,7 @@ export default function PortableText({ value, headings = [], showInlineTOC = fal
     block: {
       ...components.block,
       h2: h2Component,
-    }
+    } as any
   }
   
   return <PT value={value} components={componentsWithTOC} />
