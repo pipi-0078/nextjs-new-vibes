@@ -126,6 +126,9 @@ const components: Partial<PortableTextReactComponents> = {
         return null
       }
       
+      // デバッグ用ログ
+      console.log('iframe component called with URL:', value.url)
+      
       // URLからembedURLを生成
       const getEmbedUrl = (originalUrl: string): string => {
         try {
@@ -178,6 +181,7 @@ const components: Partial<PortableTextReactComponents> = {
       
       // 埋め込み不可能なプラットフォームの場合の特別処理（embedUrl生成より前に処理）
       if (value.url.includes('twitter.com') || value.url.includes('x.com')) {
+        console.log('Twitter/X detected, showing link card')
         return (
           <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
             <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50">
@@ -198,6 +202,7 @@ const components: Partial<PortableTextReactComponents> = {
 
       // Spotify の CSP エラー対策 - 最初からリンクカードのみ表示
       if (value.url.includes('spotify.com')) {
+        console.log('Spotify detected, showing link card:', value.url)
         // エピソード、トラック、アルバム、プレイリストを判定
         let contentType = 'コンテンツ'
         if (value.url.includes('/episode/')) contentType = 'エピソード'
@@ -240,6 +245,7 @@ const components: Partial<PortableTextReactComponents> = {
       
       // embedUrlは埋め込み可能なプラットフォームのみ生成
       const embedUrl = getEmbedUrl(value.url)
+      console.log('Creating iframe for URL:', value.url, 'embedUrl:', embedUrl)
       
       return (
         <div className="my-8 bg-white" style={{ width: `${value.width || 100}%` }}>
