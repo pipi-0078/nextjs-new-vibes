@@ -171,13 +171,22 @@ const components: Partial<PortableTextReactComponents> = {
             }
           }
           
-          // Spotify URL処理 - embed形式は許可、通常形式はリンクカード
+          // Spotify URL処理 - 通常形式をembed形式に変換
           if (originalUrl.includes('spotify.com')) {
-            // 既にembed形式の場合は許可（動作することが確認済み）
+            // 既にembed形式の場合はそのまま返す
             if (originalUrl.includes('/embed/')) {
               return originalUrl
             }
-            // 通常形式の場合はリンクカード表示のため、そのまま返す
+            // 通常形式をembed形式に変換
+            if (originalUrl.includes('/episode/') || originalUrl.includes('/track/') || 
+                originalUrl.includes('/album/') || originalUrl.includes('/playlist/') || 
+                originalUrl.includes('/show/')) {
+              // URLの基本部分を取得（クエリパラメータを除去）
+              const baseUrl = originalUrl.split('?')[0]
+              // /episode/ → /embed/episode/ に変換
+              const embedUrl = baseUrl.replace('spotify.com/', 'spotify.com/embed/')
+              return `${embedUrl}?utm_source=generator`
+            }
             return originalUrl
           }
 
@@ -260,9 +269,9 @@ const components: Partial<PortableTextReactComponents> = {
         )
       }
 
-      // Spotify の CSP エラー対策 - embed形式以外はリンクカード表示
-      if (isSpotify && !value.url.includes('/embed/')) {
-        console.log('Spotify non-embed URL detected, showing link card:', value.url)
+      // Spotify の CSP エラー対策 - 万が一embed変換が失敗した場合のフォールバック
+      if (isSpotify && !value.url.includes('/embed/') && !embedUrl.includes('/embed/')) {
+        console.log('Spotify fallback to link card:', value.url)
         // エピソード、トラック、アルバム、プレイリストを判定
         let contentType = 'コンテンツ'
         if (value.url.includes('/episode/')) contentType = 'エピソード'
