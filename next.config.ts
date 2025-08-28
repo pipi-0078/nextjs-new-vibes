@@ -30,7 +30,7 @@ const nextConfig: NextConfig = {
           },
           {
             key: 'Permissions-Policy',
-            value: 'encrypted-media=(), autoplay=(), fullscreen=()',
+            value: 'encrypted-media=*, autoplay=*, fullscreen=*',
           },
         ],
       },
