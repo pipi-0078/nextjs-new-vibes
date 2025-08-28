@@ -28,6 +28,10 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: "frame-ancestors 'self' https://*.sanity.studio https://new-vibes.sanity.studio http://localhost:3333",
           },
+          {
+            key: 'Permissions-Policy',
+            value: 'encrypted-media=*, autoplay=*, fullscreen=*',
+          },
         ],
       },
       {
