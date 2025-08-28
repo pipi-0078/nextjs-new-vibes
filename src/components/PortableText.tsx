@@ -271,6 +271,9 @@ const components: Partial<PortableTextReactComponents> = {
 
       // embedUrlを先に生成
       const embedUrl = getEmbedUrl(value.url)
+      console.log('🔍 Generated embedUrl:', embedUrl)
+      console.log('🔍 Original URL:', value.url)
+      console.log('🔍 Contains /embed/?', embedUrl.includes('/embed/'))
       
       // Spotify の CSP エラー対策 - 万が一embed変換が失敗した場合のフォールバック
       if (isSpotify && !value.url.includes('/embed/') && !embedUrl.includes('/embed/')) {
@@ -326,7 +329,7 @@ const components: Partial<PortableTextReactComponents> = {
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen
               loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allow="autoplay; clipboard-write; fullscreen; picture-in-picture"
             />
           </div>
           {value.title && (
