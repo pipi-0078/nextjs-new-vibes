@@ -144,7 +144,7 @@ const components: Partial<PortableTextReactComponents> = {
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen
               loading="lazy"
-              allow="autoplay; clipboard-write; fullscreen; picture-in-picture"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
             />
           </div>
           {value.title && (
