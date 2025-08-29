@@ -325,6 +325,18 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-12">
               AI-POPミュージシャン『KIZUNA』次世代サウンドを公開中！
             </h2>
+            <div className="flex justify-center mb-8">
+              <div className="relative w-full max-w-2xl">
+                <Image
+                  src="/images/kizuna-kimono.jpg"
+                  alt="KIZUNA - AI-POPミュージシャン、紫の着物を着て街を見下ろす"
+                  width={800}
+                  height={500}
+                  className="rounded-xl shadow-2xl object-cover"
+                  priority={false}
+                />
+              </div>
+            </div>
           </div>
         </section>
       </ScrollReveal>
