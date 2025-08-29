@@ -337,9 +337,20 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 />
               </div>
             </div>
-            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
               AIが紡ぐ旋律で、生きるヒントをお届けします
             </p>
+            <div className="flex justify-center">
+              <a 
+                href="https://suno.com/@yoshibow"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl shadow-lg hover:shadow-purple-500/25 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              >
+                <span className="relative z-10">KIZUNAのAI-POPはこちら</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-700 to-pink-700 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </a>
+            </div>
           </div>
         </section>
       </ScrollReveal>
