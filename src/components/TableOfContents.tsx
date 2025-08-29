@@ -82,7 +82,7 @@ export default function TableOfContents({ headings, className = '', collapsible 
                 onClick={() => scrollToHeading(heading.id)}
                 className="block w-full text-left py-1 px-2 rounded text-gray-600 hover:text-primary-600 hover:bg-gray-50 transition-colors duration-200 whitespace-normal break-words"
                 style={{ 
-                  fontSize: '0.7em',
+                  fontSize: '0.8em',
                   lineHeight: '1.4'
                 }}
               >

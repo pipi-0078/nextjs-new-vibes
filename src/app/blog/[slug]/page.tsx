@@ -286,7 +286,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
       </header>
 
       {post.body && (
-        <div className="prose prose-lg max-w-none prose-gray bg-white text-gray-800">
+        <div className="prose prose-lg max-w-none prose-gray bg-white text-gray-800" style={{ fontSize: '1.1em' }}>
           <PortableText value={post.body} headings={headings} showInlineTOC={true} />
         </div>
       )}
