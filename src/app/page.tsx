@@ -328,7 +328,7 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
             <div className="flex justify-center mb-8">
               <div className="relative w-full max-w-2xl">
                 <Image
-                  src="/images/kizuna-kimono.jpg"
+                  src="/kizuna.png"
                   alt="KIZUNA - AI-POPミュージシャン、紫の着物を着て街を見下ろす"
                   width={800}
                   height={500}
