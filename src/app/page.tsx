@@ -337,6 +337,9 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                 />
               </div>
             </div>
+            <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+              AIが紡ぐ旋律で、生きるヒントをお届けします
+            </p>
           </div>
         </section>
       </ScrollReveal>
