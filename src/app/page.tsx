@@ -314,6 +314,21 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </ScrollReveal>
       )}
 
+      <ScrollReveal animation="fade-up">
+        <section className="py-20 relative">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="mb-4">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
+                🎵 Music
+              </span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-12">
+              AI-POPミュージシャン『KIZUNA』次世代サウンドを公開中！
+            </h2>
+          </div>
+        </section>
+      </ScrollReveal>
+
       <ScrollReveal animation="fade-scale">
         <section className="py-24 relative overflow-hidden">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
