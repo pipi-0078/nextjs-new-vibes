@@ -219,9 +219,11 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
         </h1>
 
         {post.excerpt && (
-          <p className="text-xl text-gray-700 mb-6 leading-relaxed">
-            {post.excerpt}
-          </p>
+          <div className="border border-gray-300 rounded-lg p-4 bg-gray-50 mb-6">
+            <p className="text-gray-700 leading-relaxed" style={{ fontSize: '0.8em' }}>
+              {post.excerpt}
+            </p>
+          </div>
         )}
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-sm text-gray-600 mb-8">
