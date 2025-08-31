@@ -80,32 +80,26 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
         </div>
       </section>
 
-      <ScrollReveal animation="fade-up">
-        <section className="py-20 relative">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <div className="mb-4">
-                <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
-                  📖 Featured Articles
-                </span>
-              </div>
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
-                最新の記事
-              </h2>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                身近な疑問や悩みを解決する記事をお届けします
-              </p>
+      <section className="py-20 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="mb-4">
+              <span className="inline-block px-4 py-2 bg-gradient-to-r from-purple-900/50 to-pink-900/50 border border-purple-400/30 text-purple-300 text-sm font-medium rounded-full backdrop-blur-sm">
+                📖 Featured Articles
+              </span>
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white via-purple-200 to-pink-200 bg-clip-text text-transparent mb-6">
+              最新の記事
+            </h2>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+              身近な疑問や悩みを解決する記事をお届けします
+            </p>
+          </div>
 
-          {featuredPosts && featuredPosts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredPosts.map((post: Post, index: number) => (
-                <ScrollReveal 
-                  key={post._id} 
-                  animation="fade-up" 
-                  delay={100 + (index * 100)}
-                >
-                  <article className="group bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-lg overflow-hidden transition-all duration-500 hover:transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/50">
+        {featuredPosts && featuredPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredPosts.map((post: Post, index: number) => (
+              <article key={post._id} className="group bg-gray-800/80 backdrop-blur-sm border border-gray-700/50 rounded-lg overflow-hidden transition-all duration-500 hover:transform hover:-translate-y-3 hover:shadow-2xl hover:shadow-purple-500/20 hover:border-purple-500/50">
                   {post.image && (
                     <Link href={`/blog/${post.slug.current}`}>
                       <div className="h-48 relative cursor-pointer hover:opacity-90 transition-opacity">
@@ -163,7 +157,6 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
                     </div>
                   </div>
                 </article>
-                </ScrollReveal>
               ))}
             </div>
           ) : (
@@ -183,7 +176,6 @@ export default async function HomePage({ searchParams }: { searchParams: Promise
           </div>
           </div>
         </section>
-      </ScrollReveal>
 
       {profile?.experience && profile.experience.length > 0 && (
         <ScrollReveal animation="fade-left">
