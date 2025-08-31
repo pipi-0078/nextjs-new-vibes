@@ -130,7 +130,7 @@ export default async function BlogPostPage({ params, searchParams }: Props & { s
     notFound();
   }
 
-  const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://localhost:3000'}/blog/${slug}`;
+  const shareUrl = `${process.env.NEXT_PUBLIC_SITE_URL || 'https://nextjs-new-vibes-qiox2zkm2-pipis-projects-5d4d6241.vercel.app'}/blog/${slug}`;
   const xShareUrl = `https://x.com/intent/tweet?url=${encodeURIComponent(shareUrl)}&text=${encodeURIComponent(post.title)}`;
   const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
   const hatenaShareUrl = `https://b.hatena.ne.jp/entry/${encodeURIComponent(shareUrl)}`;
